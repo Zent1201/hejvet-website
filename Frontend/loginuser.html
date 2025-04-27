@@ -1,0 +1,114 @@
+<html>
+<head>
+    <title>HTML Login Form</title>
+    <link rel="stylesheet" href="css/logstyle.css">
+</head>
+<body>
+    <div class="mainlogin">
+        <div class="header">
+            <a href="index.html" class="back-btn">
+                <img src="images/backbtn1.png" alt="Back" class="back-icon">
+            </a>
+            <h1>HEJ VET! USER LOGIN</h1>
+        </div>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+            <div class="wrap">
+                <button type="submit">Log in</button>
+            </div>
+        </form>
+        <p>Forgot your password? <a href="fpwform.html" style="text-decoration: none;">Reset here</a></p>
+        <p>Are you an veterinarian? <a href="logindok.html" style="text-decoration: none;">Log in here!</a></p>
+    </div>
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+    <script src="js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+
+    <script>
+     $('#loginForm').on('submit', function(e) {
+    e.preventDefault(); // Mencegah halaman reload saat form disubmit
+
+    const username = $('#username').val();
+    const password = $('#password').val();
+
+    // Validasi input (opsional)
+    if (!username || !password) {
+        Swal.fire({
+            title: 'Error!',
+            text: 'Username dan Password wajib diisi!',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        return;
+    }
+
+    // Lakukan AJAX request ke API backend untuk login
+    $.ajax({
+        url: 'https://hejvet.my.id/api/login', // Ganti dengan URL backend Anda
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ username: username, password: password }),
+        success: function(response) {
+            console.log('Response dari server:', response); // Cek response dari server
+            if (response.token && response.user) {
+                // Simpan token dan data pengguna di localStorage
+                localStorage.setItem('token', response.token);
+                localStorage.setItem('user', JSON.stringify(response.user)); // Simpan data pengguna di localStorage
+
+                // Redirect berdasarkan role pengguna
+                const userRole = response.user.role;
+                switch (userRole) {
+                    case 'admin':
+                        window.location.href = 'adminview/index.html'; // Ganti dengan jalur adminhome.html
+                        break;
+                    case 'pasien':
+                        window.location.href = 'userview/index.html'; // Ganti dengan jalur dashboard pasien
+                        break;
+                    case 'dokter':
+                        window.location.href = 'dokterview/index.html'; // Ganti dengan jalur dashboard dokter
+                        break;
+                    default:
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Role tidak dikenali: ' + userRole,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                        break;
+                }
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Login gagal: Token atau data pengguna tidak ditemukan.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        },
+        error: function(xhr) {
+            // Menangani error saat login
+            const errorMessage = xhr.responseJSON ? xhr.responseJSON.message : 'Akun tidak terdaftar.';
+            Swal.fire({
+                title: 'Error!',
+                text: errorMessage,
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+            console.error('Error saat login:', errorMessage); // Cek error yang diterima dari server
+        }
+    });
+});
+
+
+    </script>
+    
+</body>
+</html>

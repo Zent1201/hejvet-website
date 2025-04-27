@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/959b89fdbf.js" crossorigin="anonymous"></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>ap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="containerumum">
+
+        <header class="header">
+
+            <div class="logo">
+                <img src="../images/hejvet.png" alt="Logo">
+            </div>
+        
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="mypet.html">Hewan</a>
+                <a href="service.html">Services</a>
+                <a href="dokters.html">Konsultasi</a>
+                <a href="riwayat.html">Riwayat</a>
+            </nav>
+        
+            <div class="dropdown navbar-profile">
+                <div class="dropbtn">
+                    <div class="profile-pic">
+                        <img src="../images/usernav.png" alt="Profile Picture">
+                    </div>
+                </div>
+                <div class="dropdown-content" id="userSettingsDropdown">
+                </div>
+            </div>
+        </header>
+
+        <main class="mainumum" style="display: flex; flex-direction: column; gap: 15px;">
+            <!-- Start of new container -->
+            <div class="consult-container">
+                <div class="header-row">
+                    <h3 class="header-title">Pilih Pasien</h3>
+                    <a href="mypet-FORM.html" class="btn-profile-baru">+ Profil Baru</a>
+                </div>
+            
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <p class="info-text">Pilih Pasien Hewan yang Perlu Penanganan</p>
+                    </div>
+                </div>
+            
+                <!-- Tab-like Card Layout with Selection -->
+                <div class="tab-cards">
+                  
+                    <!-- <div class="tab-card">
+                        <input type="radio" name="selected-pet" id="pet-otto" class="radio-btn" checked>
+                        <label for="pet-otto" class="profileselect-card">
+                            <div class="profileselect-info">
+                                <h3>Otto</h3>
+                                <ul>
+                                    <li><i class="fas fa-calendar-alt"></i> <span class="label">Usia:</span> <span class="value">12 bulan</span></li>
+                                    <li><i class="fas fa-venus-mars"></i> <span class="label">Gender:</span> <span class="value">Jantan</span></li>
+                                    <li><i class="fas fa-paw"></i> <span class="label">Spesies:</span> <span class="value">Kucing</span></li>
+                                    <li><i class="fas fa-cat"></i> <span class="label">Ras:</span> <span class="value">Angora</span></li>
+                                </ul>
+                            </div>
+                            <div class="radio-toggle">
+                                <span class="radio-circle"></span>
+                            </div>
+                        </label>
+                    </div> -->
+            
+                    <!-- Example Card 2 -->
+                    <!-- <div class="tab-card">
+                        <input type="radio" name="selected-pet" id="pet-max" class="radio-btn">
+                        <label for="pet-max" class="profileselect-card">
+                            <div class="profileselect-info">
+                                <h3>Max</h3>
+                                <ul>
+                                    <li><i class="fas fa-calendar-alt"></i> <span class="label">Usia:</span> <span class="value">6 bulan</span></li>
+                                    <li><i class="fas fa-venus-mars"></i> <span class="label">Gender:</span> <span class="value">Betina</span></li>
+                                    <li><i class="fas fa-paw"></i> <span class="label">Spesies:</span> <span class="value">Anjing</span></li>
+                                    <li><i class="fas fa-dog"></i> <span class="label">Ras:</span> <span class="value">Beagle</span></li>
+                                </ul>
+                            </div>
+                            <div class="radio-toggle">
+                                <span class="radio-circle"></span>
+                            </div> -->
+                        </label>
+                    </div>
+                    <a href="#" id="consult-link" class="lanjut-btn">Lanjut</a>
+                </div>
+            </div>
+            
+        </main>
+        
+        <section class="bannerumum"></section>
+
+        <section class="low-contentumum"></section>
+
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="logo-section">
+                    <img src="../images/hejvetbesar.png" alt="Logo">
+                </div>
+                <div class="links">
+                    <h3>LINKS</h3>
+                    <a href="index.html">Home</a>
+                    <a href="mypet.html">Hewan</a>
+                    <a href="service.html">Services</a>
+                    <a href="dokters.html">Konsultasi</a>
+                    <a href="riwayat.html">Riwayat</a>
+                </div>
+                <div class="socials">
+                    <h3>SOCIALS</h3>
+                    <a href="#"><i class="fa-brands fa-instagram"></i> hejvet.id</a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i> HEJ VET!</a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i> HEJ VET!</a>
+                </div>
+                <div class="contacts">
+                    <h3>CONTACTS</h3>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i> +62-8951-2345-6789</a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i> +62-8951-2345-6789</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 © HEJ VET! All rights reserved.</p>
+                <p>Website by AntiMubazir</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function togglePopup() {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.classList.toggle('show');
+        }
+    </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterLinks = document.querySelectorAll('.filter-link');
+    const cards = document.querySelectorAll('.dokters-card');
+
+    filterLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();  // Prevent default link behavior
+            const filter = this.getAttribute('data-filter');
+
+            // Show/Hide cards based on category
+            cards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Remove active class from all links
+            filterLinks.forEach(link => link.classList.remove('active'));
+
+            // Add active class to the clicked link
+            this.classList.add('active');
+        });
+    });
+});
+
+    </script>
+    
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+    <script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+
+    <script>
+  $(document).ready(function () {
+    const token = localStorage.getItem('token'); // Ambil token dari localStorage
+    const user = JSON.parse(localStorage.getItem('user')); // Ambil data user dari localStorage
+
+    // Validasi apakah user sudah login dan memiliki role pasien
+    if (!token) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Anda perlu login terlebih dahulu',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.href = 'loginuser.html';
+        });
+        return;
+    }
+
+    if (!user || user.role !== 'pasien') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Akses Ditolak',
+            text: 'Anda tidak memiliki akses ke halaman ini.',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.href = 'loginuser.html';
+        });
+        return;
+    }
+
+    // Ambil ID pasien dari user
+    const pasienId = user.id;
+
+    // Panggil API untuk mendapatkan data hewan berdasarkan ID pasien
+    $.ajax({
+        url: `https://hejvet.my.id/api/users/${pasienId}`, // API endpoint
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}` // Sertakan token autentikasi
+        },
+        success: function (response) {
+            // Pastikan data hewan ada
+            if (response.hewans && response.hewans.length > 0) {
+                response.hewans.forEach(hewan => {
+                    // Buat elemen kartu untuk setiap hewan
+                    const petCard = `
+                        <div class="tab-card">
+                            <input type="radio" name="selected-pet" id="pet-${hewan.id}" class="radio-btn">
+                            <label for="pet-${hewan.id}" class="profileselect-card">
+                                <div class="profileselect-info">
+                                    <h3>${hewan.nama_hewan}</h3>
+                                    <ul>
+                                        <li><i class="fas fa-calendar-alt"></i> <span class="label">Usia:</span> <span class="value">${hewan.umur} bulan</span></li>
+                                        <li><i class="fas fa-venus-mars"></i> <span class="label">Gender:</span> <span class="value">${hewan.jenis_kelamin}</span></li>
+                                        <li><i class="fas fa-paw"></i> <span class="label">Spesies:</span> <span class="value">${hewan.spesies}</span></li>
+                                        <li><i class="fas fa-cat"></i> <span class="label">Ras:</span> <span class="value">${hewan.jenis_hewan}</span></li>
+                                    </ul>
+                                </div>
+                                <div class="radio-toggle">
+                                    <span class="radio-circle"></span>
+                                </div>
+                            </label>
+                        </div>`;
+                    // Tambahkan kartu hewan ke dalam container
+                    $('.tab-cards').append(petCard);
+                });
+
+                // Ambil ID dokter dari URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const doctorId = urlParams.get('id');
+
+                // Tambahkan event listener untuk klik link konsultasi
+                $('#consult-link').on('click', function (event) {
+                    // Cek apakah ada hewan yang dipilih
+                    const selectedPet = $('input[name="selected-pet"]:checked');
+                    if (selectedPet.length > 0) {
+                        // Hewan sudah dipilih, tambahkan link yang sesuai
+                        $(this).attr('href', `dokters CONSULT-confirm.html?id=${doctorId}&pet=${selectedPet.attr('id').split('-')[1]}`);
+                    } else {
+                        // Hewan belum dipilih, tampilkan peringatan
+                        event.preventDefault();
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Pilih Hewan Terlebih Dahulu',
+                            text: 'Anda harus memilih data hewan sebelum melanjutkan.',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+
+            } else {
+                // Tidak ada data hewan, tampilkan pesan
+                $('.tab-cards').append('<p>Tidak ada data hewan.</p>');
+                $('#consult-link').on('click', function (event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Tidak Ada Data Hewan',
+                        text: 'Anda tidak bisa melanjutkan tanpa data hewan.',
+                        confirmButtonText: 'OK'
+                    });
+                });
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error mengambil data hewan:", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Memuat Data',
+                text: 'Gagal memuat data hewan. Silakan coba lagi nanti.',
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+});
+
+$('.navbar-profile').hover(function () {
+            const user = JSON.parse(localStorage.getItem('user')); // Retrieve user data from localStorage
+
+            if (user && user.id) {
+                // Clear any existing dropdown content to avoid duplicates
+                $('#userSettingsDropdown').empty();
+
+                // Append buttons with user-specific links
+                const settingsHtml = `
+                    <a href="useraccsettings.html?id=${user.id}">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                    <a href="../index.html">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </a>
+                `;
+
+                $('#userSettingsDropdown').append(settingsHtml); // Add to dropdown
+            } else {
+                // Fallback if no user data is found
+                $('#userSettingsDropdown').html('<p>User not logged in.</p>');
+            }
+                });
+
+                // Optional: Ensure dropdown stays open on hover
+                $('.navbar-profile').on('mouseleave', function () {
+                    $(this).removeClass('open');
+                });
+
+                $('.navbar-profile').on('mouseenter', function () {
+                    $(this).addClass('open');
+                });
+
+
+
+    </script>
+</body>
+
+
+
+</html>

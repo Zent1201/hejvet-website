@@ -1,0 +1,247 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/style.css">    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://kit.fontawesome.com/959b89fdbf.js" crossorigin="anonymous"></script>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>ap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="containerumum">
+
+            <header class="header">
+
+                <div class="logo">
+                    <img src="../images/hejvet.png" alt="Logo">
+                </div>
+            
+                <nav class="navbar">
+                    <a href="index.html">Home</a>
+                    <a href="mypet.html">Hewan</a>
+                    <a href="service.html">Services</a>
+                    <a href="dokters.html">Konsultasi</a>
+                    <a href="riwayat.html">Riwayat</a>
+                </nav>
+            
+                <div class="dropdown navbar-profile">
+                    <div class="dropbtn">
+                        <div class="profile-pic">
+                            <img src="../images/usernav.png" alt="Profile Picture">
+                        </div>
+                    </div>
+                    <div class="dropdown-content" id="userSettingsDropdown">
+                    </div>
+                </div>
+            </header>
+
+            <main class="mainumum" style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="consult-container">
+                    <div class="headerconfirm-row">
+                        <a href="pembayaran-consult.html" class="back-arrow"><i class="fas fa-arrow-left"></i></a>
+                        <h3 class="headerconfirm-title">Ringkasan Pembayaran</h3>
+                        <span class="pasien-name">Loading...</span>
+                    </div>
+                    <div class="confirm-payment-section">
+                        <div class="confirm-header">
+                            <h5>Pembayaran dengan: <b>Virtual Account BCA</b></h5>
+                        </div>
+                        
+                        <!-- Added ORDER-ID and KODE-PEMBAYARAN section -->
+                        <div class="order-info">
+                            <p>ORDER-ID Anda: 123456789</p>
+                            <p>KODE-PEMBAYARAN: 123 (REKENING BCA)</p>
+                            <p class="subtext">Selesaikan pembayaran dalam 5 menit</p>
+                        </div>
+            
+                        <div class="total-amount"></div>
+                        
+                        <div class="payment-info">
+                            Pembayaran ke <b>HEJ VET!</b>
+                        </div>
+<!--                         
+                        <a href=""><button class="payment-method">Konfirmasi Pembayaran</button>
+                        </a> -->
+                    </div>
+                </div>
+            </main>
+            
+            
+            <section class="bannerumum"></section>
+
+            <section class="low-contentumum"></section>
+
+
+            <footer class="footer">
+                <div class="footer-top">
+                    <div class="logo-section">
+                        <img src="../images/hejvetbesar.png" alt="Logo">
+                    </div>
+                    <div class="links">
+                        <h3>LINKS</h3>
+                        <a href="index.html">Home</a>
+                        <a href="mypet.html">Hewan</a>
+                        <a href="service.html">Services</a>
+                        <a href="dokters.html">Konsultasi</a>
+                        <a href="riwayat.html">Riwayat</a>
+                    </div>
+                    <div class="socials">
+                        <h3>SOCIALS</h3>
+                        <a href="#"><i class="fa-brands fa-instagram"></i> hejvet.id</a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i> HEJ VET!</a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i> HEJ VET!</a>
+                    </div>
+                    <div class="contacts">
+                        <h3>CONTACTS</h3>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i> +62-8951-2345-6789</a>
+                        <a href="#"><i class="fa-brands fa-telegram"></i> +62-8951-2345-6789</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>2024 © HEJ VET! All rights reserved.</p>
+                    <p>Website by AntiMubazir</p>
+                </div>
+            </footer>
+        </div>
+
+        <script>
+            function togglePopup() {
+                const overlay = document.getElementById('popupOverlay');
+                overlay.classList.toggle('show');
+            }
+        </script>
+          <script src="../js/jquery-3.7.1.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          <script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+          <script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+          <script>
+  $(document).ready(function () {
+    // Ambil token dan data user dari localStorage
+    const token = localStorage.getItem('token'); // Ambil token dari localStorage
+    const user = JSON.parse(localStorage.getItem('user')); // Ambil data user dari localStorage
+
+    // Validasi apakah user sudah login dan memiliki role pasien
+    if (!token) {
+        alert("Anda perlu login terlebih dahulu.");
+        window.location.href = 'loginuser.html';
+        return;
+    }
+
+    if (!user || user.role !== 'pasien') {
+        alert("Anda tidak memiliki akses ke halaman ini.");
+        window.location.href = 'loginuser.html';
+        return;
+    }
+
+    // Ambil ID pasien dari data user
+    const pasienId = user.id;
+
+    // Panggil API untuk mendapatkan data pasien dan hewan yang terkait
+    $.ajax({
+        url: `https://hejvet.my.id/api/users/${pasienId}`, // Endpoint API untuk user
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}` // Sertakan token autentikasi
+        },
+        success: function (response) {
+            if (response && response.hewans && response.hewans.length > 0) {
+                // Jika terdapat data hewan, tampilkan
+                const hewans = response.hewans;
+                const hewanList = hewans.map(hewan => `${hewan.nama_hewan} (${hewan.jenis_hewan})`).join('');
+                $('.pasien-name').html(`<p>Pasien: ${hewanList}</p>`);
+            } else {
+                // Jika tidak ada data hewan
+                $('.pasien-name').html('<p>Pasien: Hewan tidak tersedia</p>');
+            }
+        },
+        error: function (error) {
+            console.error('Gagal mengambil data pasien:', error);
+            $('.pasien-name').html('<p>Pasien: Gagal memuat data</p>');
+        }
+    });
+    
+    // Mendapatkan doctorId dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const doctorId = urlParams.get('id');
+
+    if (doctorId) {
+        // Memanggil API untuk mendapatkan data pembayaran berdasarkan ID dokter
+        $.ajax({
+            url: `https://hejvet.my.id/api/users/${doctorId}`, // Sesuaikan dengan endpoint API Anda
+            method: 'GET',
+            success: function(response) {
+                // Ambil biaya sesi dan biaya layanan dari API, atau gunakan default jika tidak ada
+                const sessionFee = response.harga ? parseInt(response.harga) : 1000000; // Ganti 1000000 dengan nilai default jika diperlukan
+                const serviceFee = response.biaya_layanan ? parseInt(response.biaya_layanan) : 2000; // Ganti 2000 dengan nilai default jika diperlukan
+                const totalFee = sessionFee + serviceFee;
+
+                // Menampilkan biaya-biaya ke dalam elemen HTML
+                $('.payment-details .payment-row:nth-child(1) .payment-value').text(`Rp ${sessionFee.toLocaleString()}`);
+                $('.payment-details .payment-row:nth-child(2) .payment-value').text(`Rp ${serviceFee.toLocaleString()}`);
+                $('.payment-details .total .payment-value').text(`Rp ${totalFee.toLocaleString()}`);
+                
+                // Menampilkan total tagihan di elemen utama
+                $('.total-amount').text(`Rp ${totalFee.toLocaleString()}`);
+
+                // Menambahkan URL ke tombol konfirmasi pembayaran
+                $('.confirm-payment-section').append(`
+                    <a href="pembayaran-success-consult.html?id=${doctorId}">
+                        <button class="payment-method">Konfirmasi Pembayaran</button>
+                    </a>
+                `);
+            },
+            error: function(error) {
+                console.error('Gagal mengambil data pembayaran:', error);
+                $('.confirm-payment-section').html('<p>Gagal memuat data pembayaran.</p>');
+            }
+        });
+    } else {
+        console.warn('ID dokter tidak ditemukan di URL');
+        $('.confirm-payment-section').html('<p>ID dokter tidak ditemukan di URL.</p>');
+    }
+});
+
+$('.navbar-profile').hover(function () {
+            const user = JSON.parse(localStorage.getItem('user')); // Retrieve user data from localStorage
+
+            if (user && user.id) {
+                // Clear any existing dropdown content to avoid duplicates
+                $('#userSettingsDropdown').empty();
+
+                // Append buttons with user-specific links
+                const settingsHtml = `
+                    <a href="useraccsettings.html?id=${user.id}">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                    <a href="../index.html">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </a>
+                `;
+
+                $('#userSettingsDropdown').append(settingsHtml); // Add to dropdown
+            } else {
+                // Fallback if no user data is found
+                $('#userSettingsDropdown').html('<p>User not logged in.</p>');
+            }
+                });
+
+                // Optional: Ensure dropdown stays open on hover
+                $('.navbar-profile').on('mouseleave', function () {
+                    $(this).removeClass('open');
+                });
+
+                $('.navbar-profile').on('mouseenter', function () {
+                    $(this).addClass('open');
+                });
+
+
+          </script>
+
+    </body>
+
+
+
+    </html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/959b89fdbf.js" crossorigin="anonymous"></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>ap.min.css"
+    rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+    crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="containerumum">
+
+        <header class="header">
+
+            <div class="logo">
+                <img src="images/hejvet.png" alt="Logo">
+            </div>
+
+            <nav class="navbar">
+                <a href="#home">Home</a>
+                <a href="#about">About us</a>
+                <a href="#services">Services</a>
+                <a href="#konsultasi">Consult</a>
+                <a href="#partner">Partners</a>
+            </nav>
+            <div class="sign-button-wrap">
+                <a href="loginuser.html" button class="buttonlog buttonlogin" type="submit" solve()>Log in </a>
+                <a href="signup.html" button class="buttonlog buttonreg" type="submit">SignUp</a>
+        </header>
+
+        <main class="mainumum" style="display: flex; flex-direction: column; gap: 15px;">
+            <section class="home" id="home">
+                <div class="content">
+                    <h3>HEJ VET!</h3>
+                    <p>Selamat datang di HEJ VET!</p>
+                    <p>Layanan yang Anda bisa percaya</p>
+                </div>
+            </section>
+
+            <section id="about">
+
+                <section class="Aboutus" id="Aboutus">
+
+                    <div class="row">
+                        <div class="image">
+                            <img src="images/aboutgambar.png" alt="">
+                        </div>
+
+                        <div class="content">
+                            <h3>Apa itu HEJ VET?</h3>
+                            <p>HEJ VET! adalah solusi digital terdepan yang dirancang khusus untuk memenuhi kebutuhan
+                                kesehatan dan perawatan hewan kesayangan Anda.
+                                Dengan fokus pada layanan konsultasi kesehatan hewan secara online, HEJ VET! memudahkan
+                                pemilik hewan untuk mendapatkan bantuan profesional
+                                kapan saja dan di mana saja. Kami bekerja sama dengan dokter hewan berlisensi dan klinik
+                                hewan mitra untuk memberikan layanan yang komprehensif,
+                                mulai dari konsultasi kesehatan, booking untuk grooming, hingga vaksinasi di
+                                klinik-klinik tepercaya.
+                            </p>
+                            <br>
+                            <p>
+                                Dengan HEJ VET!, Anda tidak hanya dapat mengakses konsultasi medis, tetapi juga
+                                merencanakan dan memesan layanan grooming atau vaksinasi dengan mudah,
+                                langsung dari aplikasi.
+
+                                Kami percaya bahwa hewan peliharaan adalah bagian dari keluarga, dan kesehatan mereka
+                                adalah prioritas utama.
+                                Dengan demikian, HEJ VET! hadir untuk memberikan ketenangan pikiran dan kemudahan dalam
+                                menjaga kesehatan dan kebahagiaan hewan kesayangan Anda.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </section>
+            </section>
+
+            <section id="services">
+                <section class="Services" id="Services">
+
+                    <div class="row">
+                        <div class="content">
+                            <h3>Layanan Kami</h3>
+                            <div class="services-grid">
+                                <div class="service-item">
+                                    <i class="fas fa-stethoscope service-icon"></i>
+                                    <h4>Konsultasi</h4>
+                                    <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus
+                                        dolores iure perferendis tempore et.</p>
+                                </div>
+                                <div class="service-item">
+                                    <i class="fas fa-cut service-icon"></i>
+                                    <h4>Grooming</h4>
+                                    <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti
+                                        neque eum hic non ut nescient dolorem.</p>
+                                </div>
+                                <div class="service-item">
+                                    <i class="fas fa-syringe service-icon"></i>
+                                    <h4>Vaksinasi</h4>
+                                    <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui
+                                        id voluptas adipisci eos earum corrupti.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+
+            <section id="konsultasi">
+                <section class="Consult" id="Consult">
+                    <div class="row">
+                        <div class="content">
+                            <h3>Dokter Kami</h3>
+                        </div>
+                    </div>
+
+                    <div class="doctor-cards-container">
+                        <button class="scroll-btn left-btn" onclick="scrollKiri()">&#10094;</button>
+
+                        <div class="doctor-cards-wrapper">
+                            <div class="doctor-card">
+                            </div>
+                        </div>
+
+                        <button class="scroll-btn right-btn" onclick="scrollRight()">&#10095;</button>
+                    </div>
+                </section>
+            </section>
+
+            <section id="partner">
+                <section class="Partner" id="Partner">
+
+                    <div class="row">
+                        <div class="content">
+                            <h3>Klinik Mitra Kami</h3>
+                            <div class="partner-container">
+                                <div class="partner-card">
+                                    <img src="images/gambarklinik.png" alt="Clinic Image">
+                                    <div class="partner-details">
+                                        <h4>KLINIK HEWAN DINAS PETERNAKAN</h4>
+                                        <p>Jl. Raya Dramaga No. 1 RT 5/RW 4 Bara,</p>
+                                        <p>Kec. Dramaga, Kab. Bogor,</p>
+                                        <p>Jawa Barat 43152</p>
+                                    </div>
+                                </div>
+
+                                <div class="partner-card">
+                                    <img src="images/gambarklinik.png" alt="Clinic Image">
+                                    <div class="partner-details">
+                                        <h4>KLINIK HEWAN DINAS PETERNAKAN</h4>
+                                        <p>Jl. Raya Dramaga No. 1 RT 5/RW 4 Bara,</p>
+                                        <p>Kec. Dramaga, Kab. Bogor,</p>
+                                        <p>Jawa Barat 43152</p>
+                                    </div>
+                                </div>
+
+                                <div class="partner-card">
+                                    <img src="images/gambarklinik.png" alt="Clinic Image">
+                                    <div class="partner-details">
+                                        <h4>KLINIK HEWAN DINAS PETERNAKAN</h4>
+                                        <p>Jl. Raya Dramaga No. 1 RT 5/RW 4 Bara,</p>
+                                        <p>Kec. Dramaga, Kab. Bogor,</p>
+                                        <p>Jawa Barat 43152</p>
+                                    </div>
+                                </div>
+                            </div>
+                </section>
+
+        </main>
+        <section class="low-contentumum"></section>
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="logo-section">
+                    <img src="images/hejvetbesar.png" alt="Logo">
+                </div>
+                <div class="links">
+                    <h3>LINKS</h3>
+                    <a href="loginuser.html">Login User</a>
+                </div>
+                <div class="socials">
+                    <h3>SOCIALS</h3>
+                    <a href="#"><i class="fa-brands fa-instagram"></i> hejvet.id</a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i> HEJ VET!</a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i> HEJ VET!</a>
+                </div>
+                <div class="contacts">
+                    <h3>CONTACTS</h3>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i> +62-8951-2345-6789</a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i> +62-8951-2345-6789</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 © HEJ VET! All rights reserved.</p>
+                <p>Website by AntiMubazir</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+<script>
+    const cardWrapper = document.querySelector('.doctor-cards-wrapper');
+    const cardWidth = document.querySelector('.doctor-card').offsetWidth + 30; // Width + margin
+
+    function scrollKiri() {
+        cardWrapper.scrollBy({
+            left: -cardWidth * 4, // Pindahkan 4 card ke kiri
+            behavior: 'smooth'
+        });
+    }
+
+    function scrollRight() {
+        cardWrapper.scrollBy({
+            left: cardWidth * 4, // Pindahkan 4 card ke kanan
+            behavior: 'smooth'
+        });
+    }
+
+</script>
+
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+<script src="js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: 'https://hejvet.my.id/api/users', // Replace with your API endpoint
+            method: 'GET',
+            success: function (response) {
+                if (response.doctors) {
+                    // Empty the container before appending new doctor cards
+                    $('.doctor-cards-wrapper').empty();
+
+                    response.doctors.forEach(function (doctor) {
+                        const photoUrl = doctor.foto_user ? doctor.foto_user : 'images/doctors-1.jpg'; // Default photo if not available
+                        const spesialisasi = doctor.spesialisasi ? doctor.spesialisasi : 'Spesialis tidak disebutkan';
+                        const nama = doctor.nama ? doctor.nama : 'Nama tidak tersedia';
+
+                        const cardHtml = `
+                        <div class="doctor-card">
+                            <img src="${photoUrl}" alt="Doctor Image">
+                            <h4>${nama}</h4>
+                            <p>${spesialisasi}</p>
+                          
+                        </div>
+                    `;
+
+                        $('.doctor-cards-wrapper').append(cardHtml);
+                    });
+                } else {
+                    console.warn("No doctors found in the response.");
+                    $('.doctor-cards-wrapper').append('<p>No doctors available.</p>');
+                }
+            },
+            error: function (error) {
+                console.error("Error fetching doctor data:", error);
+                $('.doctor-cards-wrapper').append('<p>Failed to load doctor data.</p>');
+            }
+        });
+    });
+
+</script>
+
+</html>

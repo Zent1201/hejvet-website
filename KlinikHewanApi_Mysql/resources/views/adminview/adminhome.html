@@ -1,0 +1,81 @@
+  <!DOCTYPE html>
+  <html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Admin</title>
+      <link rel="stylesheet" href="../css/adminstyle.css">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+        <a href="admin_doktershome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user-doctor"></span>&nbsp;&nbsp;Dokter's Home</a>
+    </div>
+
+  <div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-teal">
+        <button class="w3-button w3-teal w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="/">Admin Panel</a>
+        <a class="w3-bar-item w3-button" href="/index"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="/login">Logout</a>
+    </div>
+
+      <div class="w3-container">
+          <h1 class="page-header">Product</h1>
+          <ul class="breadcrumb">
+              <li>
+                  <a href="/create" class="w3-button w3-blue breadcrumb-button">
+                      <span class="fa-solid fa-circle-plus"></span>&nbsp;Add Product
+                  </a>&nbsp;&nbsp;
+              </li>
+              <a href="/delete_all" onclick="return confirm('Anda yakin ingin menghapus semua menu?')" class="w3-button w3-red breadcrumb-button">
+                  <span class="fa-solid fa-trash"></span>&nbsp;Delete All
+              </a>
+          </ul>  
+          <table class="w3-table-all w3-hoverable">
+              <thead>
+                  <tr>
+                      <th>Nama</th>
+                      <th>Kategori</th>
+                      <th>Harga</th>
+                      <th>Gambar Menu</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr th:each="product : ${products}">
+                      <td th:text="${product.nama}"></td>
+                      <td th:text="${product.kategori}"></td>
+                      <td th:text="@{'Rp. ' + ${product.harga}}"></td>
+                      <td>
+                          <img th:src="@{'/images/' + ${product.image}}" alt="..." width="100">
+                      </td>
+                      <td style="white-space: nowrap;">
+                          <a class="w3-button w3-yellow w3-small" th:href="@{/edit (id=${product.id})}">Edit</a>
+                          <a class="w3-button w3-red w3-small" th:href="@{/delete (id=${product.id})}" onclick="return confirm('Anda yakin ingin menghapus?')">Delete</a>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <script>
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+  }
+
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+  }
+  </script>
+
+  </body>
+  </html>

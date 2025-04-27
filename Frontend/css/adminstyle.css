@@ -1,0 +1,48 @@
+.banneratas {
+    width: 100vw; /* Ensure the entire section takes up the full viewport width */
+    padding: 0; /* Reset any padding on the section to avoid internal gaps */
+    margin: 0; /* Reset margin to prevent extra spacing */
+    margin-top: 0; /* Ensure no margin above */
+    padding-top: 0; /* Remove any padding on top */
+}
+
+.banneratas .row {
+    display: flex;
+    align-items: center;
+    background-color: #5c73e7;
+    justify-content: space-between; /* Add this to create space between image and text */
+    padding: 5px 0; /* Add padding around the entire section for a cleaner look */
+    width: 100%; /* Ensure the row stretches across the full width */
+    flex-grow: 1; /* Allow the row to grow and fill available space */
+    box-sizing: border-box; /* Include padding and borders in the width calculation */
+}
+
+.banneratas .content {
+    flex: 1;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.banneratas .content h2 {
+    color: #ffffff;
+    font-size: 35px;
+}
+
+.banneratas .content h3 {
+    color: #ffffff;
+    line-height: 2;
+    font-size: 20px;
+}
+
+canvas {
+    display: block; /* Ensures canvas is visible */
+    width: 100%; /* Allows resizing */
+    height: 100px; /* As specified */
+  }
+
+.jadwal-select {
+    padding: 5px;
+    font-size: 14px;
+    width: 60px;
+    margin: 0 5px;
+}

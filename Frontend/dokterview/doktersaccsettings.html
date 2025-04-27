@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>ap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="containerpet">
+
+        <header class="header">
+
+            <div class="logo">
+                <img src="../images/hejvet.png" alt="Logo">
+            </div>
+        
+            <nav class="navbar">
+                <a href="homedokter.html">Home</a>
+                <a href="dokteraturjadwal.html">Atur Jadwal</a>
+                <a href="konsultpasien dokter.html">Inbox Konsultasi</a>
+            </nav>
+        
+            <div class="dropdown navbar-profile">
+                <div class="dropbtn">
+                    <div class="profile-pic">
+                        <img src="../images/usernav.png" alt="Profile Picture">
+                    </div>
+                </div>
+                <div class="dropdown-content" id="userSettingsDropdown">
+                </div>
+            </div>
+        </header>
+
+        <main class="main" style="display: flex; flex-direction: column; gap: 15px;">
+
+            <div class="form-container">
+                <!-- Profile Card -->
+                <div class="form-header">
+                    <a href="mypet.html" class="back-btnform">
+                        <img src="../images/backbtn.png" alt="Back" class="back-icon"> <!-- Replace this with your actual SVG later -->
+                    </a>
+                    <span class="header-text">Edit informasi pribadi Anda</span>
+                </div>
+        
+                <!-- Form Section -->
+                <div class="form-section">
+                    <label for="nama">Nama</label>
+                    <input type="text" id="nama" class="form-input" placeholder="Nama">
+            
+                    <label for="usia">Usia</label>
+                    <input type="text" id="usia" class="form-input" placeholder="Usia">
+            
+                </div>
+                <button class="save-button" disabled>Simpan Profil</button>
+            </div>
+        </main>
+        <section class="bannerpet"></section>
+        <section class="low-contentpet"></section>
+
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="logo-section">
+                    <img src="../images/hejvetbesar.png" alt="Logo">
+                </div>
+                <div class="links">
+                    <h3>LINKS</h3>
+                    <a href="homedokter.html">Home</a>
+                    <a href="dokteraturjadwal.html">Atur Jadwal</a>
+                    <a href="konsultpasien dokter.html">Inbox Konsultasi</a>
+                </div>
+                <div class="socials">
+                    <h3>SOCIALS</h3>
+                    <a href="#"><i class="fa-brands fa-instagram"></i> hejvet.id</a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i> HEJ VET!</a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i> HEJ VET!</a>
+                </div>
+                <div class="contacts">
+                    <h3>CONTACTS</h3>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i> +62-8951-2345-6789</a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i> +62-8951-2345-6789</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 © HEJ VET! All rights reserved.</p>
+                <p>Website by AntiMubazir</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+    <script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+
+    <script>
+        function togglePopup() {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.classList.toggle('show');
+        }
+    </script>
+    <script>
+        const inputs = document.querySelectorAll('.form-input');
+        const saveButton = document.querySelector('.save-button');
+    
+        function checkInputs() {
+            let allFilled = false;
+    
+            for (let input of inputs) {
+                if (input.value.trim() !== '') {
+                    allFilled = true;
+                    break;
+                }
+            }
+    
+            if (allFilled) {
+                saveButton.disabled = false;
+                saveButton.classList.add('active');
+    
+            } else {
+                saveButton.disabled = true;
+                saveButton.classList.remove('active');
+    
+                saveButton.onclick = null;
+            }
+        }
+    
+        inputs.forEach(input => {
+            input.addEventListener('input', checkInputs);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('id'); // Ambil user ID dari URL
+
+            // Cek jika ada user ID untuk proses edit data
+            if (userId) {
+                // Load user data
+                $.ajax({
+                    url: `https://hejvet.my.id/api/users/${userId}`,
+                    method: 'GET',
+                    success: function (response) {
+                        // Set nilai input berdasarkan data yang diterima dari backend
+                        $('#nama').val(response.nama);
+                        $('#usia').val(response.usia);
+
+                        // Menampilkan gambar profil jika tersedia
+                        if (response.foto_user) {
+                            $('#profile-pic').attr('src', `https://hejvet.my.id/storage/${response.foto_user}`);
+                        }
+                    },
+                    error: function (error) {
+                        console.error("Error loading user data:", error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Gagal memuat data pengguna.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            }
+
+                $('.navbar-profile').hover(function () {
+                const user = JSON.parse(localStorage.getItem('user')); // Retrieve user data from localStorage
+
+                if (user && user.id) {
+                    // Clear any existing dropdown content to avoid duplicates
+                    $('#userSettingsDropdown').empty();
+
+                    // Append buttons with user-specific links
+                    const settingsHtml = `
+                        <a href="doktersaccsettings.html?id=${user.id}">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <a href="../index.html">
+                            <i class="fas fa-sign-out-alt"></i> Log Out
+                        </a>
+                    `;
+
+                    $('#userSettingsDropdown').append(settingsHtml); // Add to dropdown
+                } else {
+                    // Fallback if no user data is found
+                    $('#userSettingsDropdown').html('<p>User not logged in.</p>');
+                }
+                    });
+
+                    // Optional: Ensure dropdown stays open on hover
+                    $('.navbar-profile').on('mouseleave', function () {
+                        $(this).removeClass('open');
+                    });
+
+                    $('.navbar-profile').on('mouseenter', function () {
+                        $(this).addClass('open');
+                    });
+
+            // Fungsi untuk memeriksa input
+            const inputs = document.querySelectorAll('.form-input');
+            const saveButton = document.querySelector('.save-button');
+
+            function checkInputs() {
+                let allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+
+                if (allFilled) {
+                    saveButton.disabled = false;
+                    saveButton.classList.add('active');
+                } else {
+                    saveButton.disabled = true;
+                    saveButton.classList.remove('active');
+                }
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener('input', checkInputs);
+            });
+
+            // Handle form submission
+            $('.save-button').click(function (e) {
+                e.preventDefault();
+
+                const formData = new FormData();
+                formData.append('nama', $('#nama').val());
+                formData.append('usia', $('#usia').val());
+
+                // Tambahkan foto jika diunggah
+                const fileInput = $('#foto_user')[0];
+                if (fileInput && fileInput.files[0]) {
+                    formData.append('foto_user', fileInput.files[0]);
+                }
+
+                // Tentukan metode dan URL berdasarkan apakah userId ada
+                const method = userId ? 'POST' : 'PUT';
+                const url = userId
+                    ? `https://hejvet.my.id/api/users/${userId}?_method=PUT`
+                    : 'https://hejvet.my.id/api/users';
+
+                $.ajax({
+                    url: url,
+                    method: method,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('your_token_key') // Token dari localStorage
+                    },
+                    success: function (response) {
+
+                        const user = JSON.parse(localStorage.getItem('user_data')) || {};
+                        user.nama = $('#nama').val(); // Perbarui nama pengguna
+                        localStorage.setItem('user_data', JSON.stringify(user));
+
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Data pengguna berhasil disimpan.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            window.location.href = 'homedokter.html'; // Redirect ke halaman tertentu
+                        });
+                    },
+                    error: function (error) {
+                        console.error("Error saving user data:", error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Gagal menyimpan data pengguna.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</body>
+
+
+
+</html>

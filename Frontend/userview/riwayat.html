@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/959b89fdbf.js" crossorigin="anonymous"></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>ap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="containerumum">
+
+        <header class="header">
+
+            <div class="logo">
+                <img src="../images/hejvet.png" alt="Logo">
+            </div>
+        
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="mypet.html">Hewan</a>
+                <a href="service.html">Services</a>
+                <a href="dokters.html">Konsultasi</a>
+                <a href="riwayat.html">Riwayat</a>
+            </nav>
+        
+            <div class="dropdown navbar-profile">
+                <div class="dropbtn">
+                    <div class="profile-pic">
+                        <img src="../images/usernav.png" alt="Profile Picture">
+                    </div>
+                </div>
+                <div class="dropdown-content">
+                    <a href="useraccsettings.html"><i class="fas fa-cog fa-fw"></i> Settings</a>
+                    <a href="landingpage.html"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="mainumum" style="display: flex; flex-direction: column; gap: 15px;">
+            <div class="riwayat-container">
+                <div class="riwayat-header">
+                    <div>
+                        <label for="select-patient">Riwayat: </label>
+                        <select id="select-patient">
+                            <option>Otto</option>
+                            <!-- Add more patients if necessary -->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="filter-status">Filter dengan: </label>
+                        <select id="filter-status">
+                            <option>Semua</option>
+                            <!-- Add more filter options if necessary -->
+                        </select>
+                    </div>
+                </div>
+            
+                <div class="riwayat-item">
+                    <div class="riwayat-item-details">
+                        <div class="riwayat-item-title">
+                            Konsultasi dengan drh. Blue Johnson, Sp.HKM
+                        </div>
+                        <div class="riwayat-item-meta">
+                            <span>Kamis, 19 Oktober 10:57 AM</span>
+                            <span><i class="fas fa-map-marker-alt"></i> -</span>
+                        </div>
+                    </div>
+                    <div class="riwayat-item-status closed">CLOSED</div>
+                    <div class="riwayat-item-action">
+                        <a href="chatsriwayat.html">Lebih Lanjut ></a>
+                    </div>
+                </div>
+            
+                <!-- Repeat for other items -->
+                <div class="riwayat-item">
+                    <div class="riwayat-item-details">
+                        <div class="riwayat-item-title">
+                            Konsultasi dengan drh. Blue Johnson, Sp.HKM
+                        </div>
+                        <div class="riwayat-item-meta">
+                            <span>Kamis, 19 Oktober 07:03 AM</span>
+                            <span><i class="fas fa-map-marker-alt"></i> -</span>
+                        </div>
+                    </div>
+                    <div class="riwayat-item-status closed">CLOSED</div>
+                    <div class="riwayat-item-action">
+                        <a href="chatsriwayat.html">Lebih Lanjut ></a>
+                    </div>
+                </div>
+                <div class="riwayat-item">
+                    <div class="riwayat-item-details">
+                        <div class="riwayat-item-title">
+                            Pemesanan layanan Grooming Hewan Besar
+                        </div>
+                        <div class="riwayat-item-meta">
+                            <span>Kamis, 19 Oktober 07:03 AM</span>
+                            <span><i class="fas fa-map-marker-alt"></i> -</span>
+                        </div>
+                    </div>
+                    <div class="riwayat-item-status closed">CLOSED</div>
+                    <div class="riwayat-item-action">
+                        <a href="#">Lebih Lanjut ></a>
+                    </div>
+                </div>
+            </div>
+            
+
+        </main>
+        
+        <section class="bannerumum"></section>
+
+        <section class="low-contentumum"></section>
+
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="logo-section">
+                    <img src="../images/hejvetbesar.png" alt="Logo">
+                </div>
+                <div class="links">
+                    <h3>LINKS</h3>
+                    <a href="index.html">Home</a>
+                    <a href="mypet.html">Hewan</a>
+                    <a href="service.html">Services</a>
+                    <a href="dokters.html">Konsultasi</a>
+                    <a href="riwayat.html">Riwayat</a>
+                </div>
+                <div class="socials">
+                    <h3>SOCIALS</h3>
+                    <a href="#"><i class="fa-brands fa-instagram"></i> hejvet.id</a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i> HEJ VET!</a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i> HEJ VET!</a>
+                </div>
+                <div class="contacts">
+                    <h3>CONTACTS</h3>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i> +62-8951-2345-6789</a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i> +62-8951-2345-6789</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 © HEJ VET! All rights reserved.</p>
+                <p>Website by AntiMubazir</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function togglePopup() {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.classList.toggle('show');
+        }
+    </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterLinks = document.querySelectorAll('.filter-link');
+    const cards = document.querySelectorAll('.dokters-card');
+
+    filterLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();  // Prevent default link behavior
+            const filter = this.getAttribute('data-filter');
+
+            // Show/Hide cards based on category
+            cards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Remove active class from all links
+            filterLinks.forEach(link => link.classList.remove('active'));
+
+            // Add active class to the clicked link
+            this.classList.add('active');
+        });
+    });
+});
+
+    </script>
+
+</body>
+
+
+
+</html>

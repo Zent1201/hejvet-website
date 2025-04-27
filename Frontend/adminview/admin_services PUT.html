@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="index.html" class="w3-bar-item w3-button"><span class="fa-solid fa-house"></span>&nbsp;&nbsp;Home Panel</a>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-indigo">
+        <button class="w3-button w3-indigo w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="../index.html"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="../loginadmin.html">Logout</a>
+    </div>
+
+    <div class="w3-container">
+        <h1 class="w3-text-indigo"> Update Services</h1>
+        <form id="updateServiceForm" method="post" enctype="multipart/form-data" class="form-background">
+            <input type="hidden" id="existingImage" name="existingImage" value="">
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Nama Layanan</label>
+                <div class="w3-col s8">
+                    <input class="w3-input w3-border" id="jenis_services" name="jenis_services" type="text" placeholder="Nama layanan" required>
+                </div>
+            </div>
+        
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Deskripsi</label>
+                <div class="w3-col s8">
+                    <textarea class="w3-input w3-border" id="deskripsi" name="deskripsi" placeholder="Deskripsi layanan" required></textarea>
+                </div>
+            </div>
+        
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Harga</label>
+                <div class="w3-col s8">
+                    <input class="w3-input w3-border" id="harga" name="harga" type="number" step="500" min="0" placeholder="Harga layanan" required>
+                </div>
+            </div>
+        
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Gambar</label>
+                <div class="w3-col s8">
+                    <input class="w3-input w3-border" id="image" name="image" type="file">
+                </div>
+            </div>
+            
+            <!-- Preview Gambar -->
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Preview Gambar</label>
+                <div class="w3-col s8">
+                    <img id="previewImage" src="https://localhost:8000/storage/default.jpg" alt="Preview Gambar" width="100" />
+                </div>
+            </div>
+        
+            
+        
+            <div class="w3-row-padding w3-margin-top">
+                <button type="submit" class="w3-button w3-blue">Submit</button>
+                <a class="w3-button w3-red" href="admin_services.html" role="button">Cancel</a>
+            </div>
+        </form>
+        
+
+        <script src="../js/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+        <script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+
+        <script>
+     $(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceId = urlParams.get('id');  // Ambil ID service dari query string
+    
+    // Jika serviceId ada, ambil data layanan
+    if (serviceId) {
+        $.ajax({
+            url: `https://hejvet.my.id/api/services/${serviceId}`,  // Ganti dengan URL API yang sesuai
+            method: 'GET',
+            success: function(response) {
+                // Isi form dengan data layanan yang diambil
+                $('#jenis_services').val(response.jenis_services);
+                $('#deskripsi').val(response.deskripsi);
+                $('#harga').val(response.harga);
+                $('#tgl_pemesanan').val(response.tgl_pemesanan); // Pastikan field ini ada jika diperlukan
+
+                // Tampilkan gambar sebelumnya jika ada
+                const imageSrc = response.image ? `https://hejvet.my.id/storage/${response.image}` : 'https://hejvet.my.id/storage/default.jpg';
+                $('#previewImage').attr('src', imageSrc);  // Tampilkan gambar sebelumnya di preview
+                
+                // Simpan nama gambar yang lama di hidden field
+                $('#existingImage').val(response.image);
+            },
+            error: function(error) {
+                console.error("Error loading service data:", error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Gagal memuat data layanan.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    }
+
+    // Handle form submission for update service
+    $('#updateServiceForm').on('submit', function(e) {
+        e.preventDefault();  // Mencegah form submit default
+
+        let formData = new FormData(this);
+        formData.append('_method', 'PATCH');  // Laravel method spoofing untuk PATCH request
+
+        // Update service data dengan AJAX
+        $.ajax({
+            url: `https://hejvet.my.id/api/services/${serviceId}`,  // Ganti dengan URL API yang sesuai
+            method: 'POST',  // Gunakan POST untuk method spoofing
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Data layanan berhasil di-update.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = 'admin_services.html';  // Arahkan ke halaman daftar layanan setelah berhasil
+                });
+            },
+            error: function(error) {
+                console.error("Error updating service data:", error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Gagal mengupdate data layanan.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    });
+
+    // Preview gambar sebelum diupload
+    $('#image').on('change', function(event) {
+        let reader = new FileReader();
+        reader.onload = function() {
+            $('#previewImage').attr('src', reader.result);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    });
+});
+
+            </script>
+            
+    
+
+ </html>

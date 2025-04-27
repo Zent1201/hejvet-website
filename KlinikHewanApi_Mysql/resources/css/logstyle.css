@@ -1,0 +1,182 @@
+/* Start of Login and Sign Page*/
+body {
+    display: flex;
+    align-items: center;
+    font-family: 'SF UI Display', sans-serif;
+    justify-content: center;
+    line-height: 1.5;
+    min-height: 100vh;
+    background: #f3f3f3;
+    flex-direction: column;
+    margin: 0;
+}
+
+.mainlogin {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    width: 500px;
+    text-align: center;
+}
+
+.mainsignup {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    width: 500px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
+}
+
+
+input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #27AAE1;
+    width: 100%;
+    font-size: 16px;
+}
+
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    background-color: #1ABBFE;
+}
+
+#message {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+.password-hint {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+    display: none;
+}
+
+.password-strength {
+    margin-top: 5px;
+}
+
+.password-strength div {
+    height: 5px;
+    border-radius: 4px;
+}
+
+.weak {
+    width: 33%;
+    background-color: red;
+}
+
+.medium {
+    width: 66%;
+    background-color: orange;
+}
+
+.strong {
+    width: 100%;
+    background-color: green;
+}
+
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.logback-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #555;
+    font-weight: bold;
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.logback-button:hover {
+    background-color: #f0f0f0;
+}
+
+.header {
+    position: relative; /* Allows positioning of the back button */
+    display: flex;
+    justify-content: center; /* Centers the heading */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    position: absolute; /* Moves the back button independently */
+    left: 15px; /* Aligns the button to the left edge */
+}
+
+.back-icon {
+    width: 28px;
+    height: auto;
+}
+
+h1 {
+    margin: 0;
+    font-size: 25px;
+    color: #333333;
+    line-height: 1;
+    text-align: center;
+}
+
+.back-btn {
+}
+
+
+.back-icon {
+    width: 21px;
+    height: 21px;
+}

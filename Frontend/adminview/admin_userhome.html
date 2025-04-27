@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="index.html" class="w3-bar-item w3-button"><span class="fa-solid fa-house"></span>&nbsp;&nbsp;Home Panel</a>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-indigo">
+        <button class="w3-button w3-indigo w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="../index.html"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="../loginadmin.html">Logout</a>
+    </div>
+
+<div class="w3-container animated bounce">
+    <h1 class="w3-text-indigo">Select Featured Services</h1>
+    <table class="w3-table w3-bordered">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Service Name</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody id="servicesTable">
+            <!-- Rows will be populated dynamically -->
+        </tbody>
+    </table>
+
+    <button onclick="updateFeaturedServices()" class="w3-button w3-blue w3-margin-top">Update Featured Services</button>
+
+    <!-- Display Selected Featured Services -->
+    <h2 class="w3-text-indigo">Featured Services</h2>
+    <div id="featuredServices" class="w3-row-padding w3-margin-top">
+        <!-- Featured service cards will be displayed here -->
+    </div>
+</div>
+
+
+    <div class="w3-container animated bounce">
+        <h1 class="w3-text-indigo">Select Dokter Rekomendasi</h1>
+        <table class="w3-table w3-bordered">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Deskripsi</th>
+                </tr>
+            </thead>
+            <tbody id="doctorTable">
+                <!-- Rows will be populated dynamically -->
+            </tbody>
+        </table>
+
+    <button onclick="updateFeaturedDoctors()" class="w3-button w3-blue w3-margin-top">Update Featured Doctors</button>
+
+    <!-- Display Selected Featured Doctors -->
+    <h2 class="w3-text-indigo">Featured Doctors in "Dokter Rekomendasi"</h2>
+    <div id="featuredDoctors" class="w3-row-padding w3-margin-top">
+        <!-- Featured doctor cards will be displayed here -->
+    </div>
+</div>
+
+</div>
+
+<script>
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+
+
+    // Example doctor data (simulate fetching from the database)
+    const doctors = [
+        { id: 1, name: "drh. Walter White, Sp.HKM", price: "Rp45.000", expertise: "Spesialis hewan kesayangan mamalia." },
+        { id: 2, name: "drh. Sarah Blue, Sp.HKRAmp", price: "Rp50.000", expertise: "Spesialis hewan kesayangan reptil dan amphibi." },
+        { id: 3, name: "drh. Beryl Johnson, Sp.HKU", price: "Rp40.000", expertise: "Spesialis hewan kesayangan unggas." },
+        { id: 4, name: "drh. Sarah Johnson", price: "Rp60.000", expertise: "Expert in pain management and critical care." }
+    ];
+
+    const selectedDoctorIds = new Set(); // Track selected doctor IDs
+
+    // Populate the doctor selection table
+    function populateDoctorTable() {
+        const doctorTable = document.getElementById('doctorTable');
+        doctorTable.innerHTML = '';
+
+        doctors.forEach(doctor => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td><input type="checkbox" onchange="toggleDoctorSelection(${doctor.id})"></td>
+                <td>${doctor.name}</td>
+                <td>${doctor.price}</td>
+                <td>${doctor.expertise}</td>
+            `;
+            doctorTable.appendChild(row);
+        });
+    }
+
+    // Toggle doctor selection
+    function toggleDoctorSelection(doctorId) {
+        if (selectedDoctorIds.has(doctorId)) {
+            selectedDoctorIds.delete(doctorId);
+        } else {
+            selectedDoctorIds.add(doctorId);
+        }
+    }
+
+    // Update featured doctors display
+    function updateFeaturedDoctors() {
+        const featuredDoctorsDiv = document.getElementById('featuredDoctors');
+        featuredDoctorsDiv.innerHTML = '';
+
+        doctors.forEach(doctor => {
+            if (selectedDoctorIds.has(doctor.id)) {
+                const doctorCard = document.createElement('div');
+                doctorCard.className = 'w3-col m3 w3-margin-bottom w3-card-4 w3-padding w3-center';
+
+                doctorCard.innerHTML = `
+                    <img src="https://via.placeholder.com/100" alt="Doctor Image" class="w3-circle" style="width:60%">
+                    <h3>${doctor.name}</h3>
+                    <p>${doctor.price}</p>
+                    <p>${doctor.expertise}</p>
+                `;
+                featuredDoctorsDiv.appendChild(doctorCard);
+            }
+        });
+    }
+
+    // Initialize doctor table
+    populateDoctorTable();
+</script>
+
+<script>
+    // Example services data (simulate fetching from the database)
+    const services = [
+        { id: 1, name: "Grooming Hewan Kecil", price: "Rp20.000", description: "Hasil dalam 1 hari." },
+        { id: 2, name: "Grooming Hewan Besar", price: "Rp35.000", description: "Hasil dalam 1 hari." },
+        { id: 3, name: "Vaksinasi", price: "Rp50.000", description: "Hasil dalam 1 hari." }
+    ];
+
+    const selectedServiceIds = new Set(); // Track selected service IDs
+
+    // Populate the services selection table
+    function populateServicesTable() {
+        const servicesTable = document.getElementById('servicesTable');
+        servicesTable.innerHTML = '';
+
+        services.forEach(service => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td><input type="checkbox" onchange="toggleServiceSelection(${service.id})"></td>
+                <td>${service.name}</td>
+                <td>${service.price}</td>
+                <td>${service.description}</td>
+            `;
+            servicesTable.appendChild(row);
+        });
+    }
+
+    // Toggle service selection
+    function toggleServiceSelection(serviceId) {
+        if (selectedServiceIds.has(serviceId)) {
+            selectedServiceIds.delete(serviceId);
+        } else {
+            selectedServiceIds.add(serviceId);
+        }
+    }
+
+    // Update featured services display
+    function updateFeaturedServices() {
+        const featuredServicesDiv = document.getElementById('featuredServices');
+        featuredServicesDiv.innerHTML = '';
+
+        services.forEach(service => {
+            if (selectedServiceIds.has(service.id)) {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'w3-col m3 w3-margin-bottom w3-card-4 w3-padding w3-center';
+
+                serviceCard.innerHTML = `
+                    <h3>${service.name}</h3>
+                    <p>${service.price}</p>
+                    <p>${service.description}</p>
+                `;
+                featuredServicesDiv.appendChild(serviceCard);
+            }
+        });
+    }
+
+    // Initialize services table
+    populateServicesTable();
+</script>
+
+</body>
+</html>

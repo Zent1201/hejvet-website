@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/959b89fdbf.js" crossorigin="anonymous"></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>ap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="containerumum">
+
+        <header class="header">
+
+            <div class="logo">
+                <img src="../images/hejvet.png" alt="Logo">
+            </div>
+        
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="dokteraturjadwal.html">Atur Jadwal</a>
+                <a href="konsultpasien dokter.html">Inbox Konsultasi</a>
+            </nav>
+        
+            <div class="dropdown navbar-profile">
+                <div class="dropbtn">
+                    <div class="profile-pic">
+                        <img src="../images/usernav.png" alt="Profile Picture">
+                    </div>
+                </div>
+                <div class="dropdown-content">
+                    <a href="doktersaccsettings.html"><i class="fas fa-cog fa-fw"></i> Settings</a>
+                    <a href="../index.html"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+                </div>
+            </div>
+        </header>
+
+<main class="main" style="display: flex; flex-direction: column; gap: 15px;">
+    <div class="banneratas">
+        <div class="inbox-container">
+          <a href="homedokter.html" class="back-btn">
+            <img src="../images/backbtn.png" alt="Back" class="back-icon"> <!-- Replace this with your actual SVG later --></a>
+            <div class="jadwal-header">
+                <h2>Inbox Konsultasi</h2>
+              </div>
+            <!-- Section for patients who need consultation -->
+            <div class="inbox-section">
+                <h3>Butuh Konsultasi</h3>
+                <div class="patient-card">
+                    <div class="patient-info">
+                        <h3 class="patient-name">John Doe</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-calendar-alt"></i> 
+                                <span class="label">Usia:</span> 
+                                <span class="value">2 tahun</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-venus-mars"></i> 
+                                <span class="label">Gender:</span> 
+                                <span class="value">Jantan</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-paw"></i> 
+                                <span class="label">Spesies:</span> 
+                                <span class="value">Kucing</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-cat"></i> 
+                                <span class="label">Ras:</span> 
+                                <span class="value">Persia</span>
+                            </li>
+                        </ul>
+                        <a href="chats dokter.html" class="chat-btn" onclick="openChat('John Doe')">Mulai Chat</a>
+                    </div>
+                </div>
+                <!-- More patient cards as needed -->
+            </div>
+          
+            <!-- Section for patients who have completed consultation -->
+            <div class="inbox-section">
+                <h3>Selesai</h3>
+                <div class="patient-card done">
+                    <div class="patient-info">
+                        <h3 class="patient-name">Alice Johnson</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-calendar-alt"></i> 
+                                <span class="label">Usia:</span> 
+                                <span class="value">1 tahun</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-venus-mars"></i> 
+                                <span class="label">Gender:</span> 
+                                <span class="value">Betina</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-paw"></i> 
+                                <span class="label">Spesies:</span> 
+                                <span class="value">Anjing</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-dog"></i> 
+                                <span class="label">Ras:</span> 
+                                <span class="value">Bulldog</span>
+                            </li>
+                        </ul>
+                        <a href="chatsriwayat dokter.html" class="chat-btn" onclick="openChat('Alice Johnson')">Reviu Chat</a>
+                    </div>
+                </div>
+                <!-- More patient cards as needed -->
+            </div>
+        </div>
+    </div>
+</main>
+
+        <section class="low-contentumum"></section>
+
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="logo-section">
+                    <img src="../images/hejvetbesar.png" alt="Logo">
+                </div>
+                <div class="links">
+                    <h3>LINKS</h3>
+                    <a href="homedokter.html">Home</a>
+                    <a href="dokteraturjadwal.html">Atur Jadwal</a>
+                    <a href="konsultpasien dokter.html">Inbox Konsultasi</a>
+                </div>
+                <div class="socials">
+                    <h3>SOCIALS</h3>
+                    <a href="#"><i class="fa-brands fa-instagram"></i> hejvet.id</a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i> HEJ VET!</a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i> HEJ VET!</a>
+                </div>
+                <div class="contacts">
+                    <h3>CONTACTS</h3>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i> +62-8951-2345-6789</a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i> +62-8951-2345-6789</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 © HEJ VET! All rights reserved.</p>
+                <p>Website by AntiMubazir</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+<script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+<script>
+function openChat(patientName) {
+    alert(`Opening chat with ${patientName}`);
+    // Here you would typically navigate to the chat page or open a chat modal
+}
+</script>
+
+<script>
+$(document).ready(function () {
+    // Memanggil API untuk mendapatkan semua data hewan
+    $.ajax({
+        url: 'https://hejvet.my.id/api/hewans', // URL API untuk hewan
+        method: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            // Memilih kontainer untuk menampilkan hewan yang membutuhkan konsultasi
+            const konsultasiSection = $('.inbox-section').first(); // Pastikan memilih section pertama (Butuh Konsultasi)
+            konsultasiSection.empty(); // Kosongkan sebelum menambahkan elemen baru
+
+            // Tambahkan judul kembali (opsional jika sudah ada di HTML)
+            konsultasiSection.append('<h3>Butuh Konsultasi</h3>');
+
+            // Loop melalui data hewan dari API
+            response.forEach(function (hewan) {
+                // Hanya menampilkan informasi hewan
+                const cardHtml = `
+                    <div class="patient-card">
+                        <div class="patient-info">
+                            <h3 class="patient-name">${hewan.nama_hewan || 'Nama Tidak Tersedia'}</h3>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-calendar-alt"></i> 
+                                    <span class="label">Usia:</span> 
+                                    <span class="value">${hewan.umur || '-'} tahun</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-venus-mars"></i> 
+                                    <span class="label">Gender:</span> 
+                                    <span class="value">${hewan.jenis_kelamin || '-'}</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-paw"></i> 
+                                    <span class="label">Spesies:</span> 
+                                    <span class="value">${hewan.jenis_hewan || '-'}</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-cat"></i> 
+                                    <span class="label">Ras:</span> 
+                                    <span class="value">${hewan.spesies || '-'}</span>
+                                </li>
+                            </ul>
+                            <a href="chats dokter.html" class="chat-btn" onclick="openChat('${hewan.nama_hewan || 'Pasien'}')">Mulai Chat</a>
+                        </div>
+                    </div>
+                `;
+
+                // Tambahkan kartu ke dalam kontainer section
+                konsultasiSection.append(cardHtml);
+            });
+
+            // Tampilkan pesan jika tidak ada data hewan
+            if (response.length === 0) {
+                konsultasiSection.append('<p>Tidak ada hewan yang membutuhkan konsultasi saat ini.</p>');
+            }
+        },
+        error: function (error) {
+            console.error('Terjadi kesalahan saat mengambil data hewan:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Gagal mengambil data hewan dari server!'
+            });
+        }
+    });
+});
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="index.html" class="w3-bar-item w3-button"><span class="fa-solid fa-house"></span>&nbsp;&nbsp;Home Panel</a>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-indigo">
+        <button class="w3-button w3-indigo w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="../index.html"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="../loginadmin.html">Logout</a>
+    </div>
+
+    <div class="w3-container">
+        <h1 class="w3-text-indigo"> Add Services</h1>
+        <form id="addServiceForm" method="post" enctype="multipart/form-data" class="form-background">
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Nama Service</label>
+                <div class="w3-col s8">
+                    <input id="nama" class="w3-input w3-border" name="jenis_services" type="text" required>
+                </div>
+            </div>
+        
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Deskripsi</label>
+                <div class="w3-col s8">
+                    <textarea id="deskripsi" class="w3-input w3-border" name="deskripsi" required></textarea>
+                </div>
+            </div>
+        
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Harga</label>
+                <div class="w3-col s8">
+                    <input id="harga" class="w3-input w3-border" name="harga" type="number" step="500" min="0" placeholder="Rp" required >
+                </div>
+            </div>
+        
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Gambar</label>
+                <div class="w3-col s8">
+                    <img id="imagePreview" alt="Service Image" width="150" class="w3-margin-bottom">
+                    <input id="image" class="w3-input w3-border" name="image" type="file" accept="image/*">
+                </div>
+            </div>
+        
+            <div class="w3-row-padding w3-margin-top">
+                <button type="submit" class="w3-button w3-blue">Submit</button>
+                <a class="w3-button w3-red" href="admin_services.html" role="button">Cancel</a>
+            </div>
+        </form>
+
+            <script src="../js/jquery-3.7.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+            <script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+            <script>
+    $(document).ready(function() {
+    // Show image preview when selecting an image
+    $('#image').on('change', function() {
+        var file = this.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview').attr('src', e.target.result).show();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    $('#addServiceForm').submit(function(e) {
+        e.preventDefault(); // Mencegah form untuk submit seperti biasa
+
+        var formData = new FormData(this); // Mengambil data dari form termasuk file
+
+        $.ajax({
+            url: 'https://hejvet.my.id/api/services', // API URL
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Menampilkan notifikasi jika sukses
+                Swal.fire({
+                    title: 'Success!',
+                    text: response.message,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Redirect atau clear form jika perlu
+                    window.location.href = 'admin_services.html';
+                });
+            },
+            error: function(xhr) {
+                // Menampilkan pesan error jika ada
+                var errors = xhr.responseJSON.errors;
+                var errorMessages = '';
+                for (var key in errors) {
+                    errorMessages += errors[key][0] + '\n';
+                }
+
+                Swal.fire({
+                    title: 'Error!',
+                    text: errorMessages,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    });
+});
+
+
+
+            </script>
+</html>
+
+

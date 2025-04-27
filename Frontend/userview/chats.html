@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/chatbox.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/959b89fdbf.js" crossorigin="anonymous"></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>
+</head>
+
+<body>
+    <div class="containerumum">
+
+        <header class="header">
+
+            <div class="logo">
+                <img src="../images/hejvet.png" alt="Logo">
+            </div>
+        
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="mypet.html">Hewan</a>
+                <a href="service.html">Services</a>
+                <a href="dokters.html">Konsultasi</a>
+                <a href="riwayat.html">Riwayat</a>
+            </nav>
+        
+            <div class="dropdown navbar-profile">
+                <div class="dropbtn">
+                    <div class="profile-pic">
+                        <img src="../images/usernav.png" alt="Profile Picture">
+                    </div>
+                </div>
+                <div class="dropdown-content" id="userSettingsDropdown">
+                </div>
+            </div>
+        </header>
+
+        <main class="mainumum" style="display: flex; flex-direction: column; gap: 15px;">
+                <!-- Chatbox Section -->
+        <section class="msger">
+            <header class="msger-header">
+            <div class="msger-header-title">
+                 Sesi Konsultasi untuk Pasien Otto
+            </div>
+            <div class="msger-header-options">
+                <span><i class="fas fa-cog"></i></span>
+            </div>
+            </header>
+        
+            <main class="msger-chat">
+            <div class="msg left-msg">
+                <div
+                class="msg-img"
+                style="background-image: url('')"
+                ></div>
+        
+                <div class="msg-bubble">
+                <div class="msg-info">
+                    <div class="doctor-name"></div>
+                    <div class="msg-info-time">12:45</div>
+                </div>
+        
+                <div class="msg-text">
+                    Selamat siang, apa keluhan dari hewan kesayangan Anda?
+                </div>
+                </div>
+            </div>
+        
+            <div class="msg right-msg">
+                <div class="msg-bubble">
+                <div class="msg-info">
+                    <div class="msg-info-name">Anda</div>
+                    <div class="msg-info-time">12:46</div>
+                </div>
+        
+                <div class="msg-text">
+                    Siang Dok, Otto memiliki keluhan yang mengaung-ngaung.
+                </div>
+                </div>
+            </div>
+            </main>
+        
+            <form class="msger-inputarea">
+            <input type="text" class="msger-input" placeholder="Enter your message...">
+            <button type="submit" class="msger-send-btn">Send</button>
+            </form>
+        </section>
+        
+
+        </main>
+        
+        <section class="bannerumum"></section>
+
+        <section class="low-contentumum"></section>
+
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="logo-section">
+                    <img src="../images/hejvetbesar.png" alt="Logo">
+                </div>
+                <div class="links">
+                    <h3>LINKS</h3>
+                    <a href="index.html">Home</a>
+                    <a href="mypet.html">Hewan</a>
+                    <a href="service.html">Services</a>
+                    <a href="dokters.html">Konsultasi</a>
+                    <a href="riwayat.html">Riwayat</a>
+                </div>
+                <div class="socials">
+                    <h3>SOCIALS</h3>
+                    <a href="#"><i class="fa-brands fa-instagram"></i> hejvet.id</a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i> HEJ VET!</a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i> HEJ VET!</a>
+                </div>
+                <div class="contacts">
+                    <h3>CONTACTS</h3>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i> +62-8951-2345-6789</a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i> +62-8951-2345-6789</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 © HEJ VET! All rights reserved.</p>
+                <p>Website by AntiMubazir</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/chatbox.js"></script>
+
+    <script>
+        function togglePopup() {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.classList.toggle('show');
+        }
+    </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterLinks = document.querySelectorAll('.filter-link');
+    const cards = document.querySelectorAll('.dokters-card');
+
+    filterLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();  // Prevent default link behavior
+            const filter = this.getAttribute('data-filter');
+
+            // Show/Hide cards based on category
+            cards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Remove active class from all links
+            filterLinks.forEach(link => link.classList.remove('active'));
+
+            // Add active class to the clicked link
+            this.classList.add('active');
+        });
+    });
+});
+
+    </script>
+
+    <script>
+
+function showPaymentOptions(option) {
+    const electronicPayment = document.getElementById('electronic-payment');
+    const bankPayment = document.getElementById('bank-payment');
+    
+    if (option === 'electronic') {
+        electronicPayment.style.display = 'block';
+        bankPayment.style.display = 'none';
+        document.querySelectorAll('.payment-tab')[0].classList.add('active');
+        document.querySelectorAll('.payment-tab')[1].classList.remove('active');
+    } else if (option === 'bank') {
+        electronicPayment.style.display = 'none';
+        bankPayment.style.display = 'block';
+        document.querySelectorAll('.payment-tab')[0].classList.remove('active');
+        document.querySelectorAll('.payment-tab')[1].classList.add('active');
+    }
+}
+
+
+    </script>
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+<script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+
+<script>
+$(document).ready(function () {
+    // Fungsi untuk mengambil query parameter dari URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Fungsi untuk memperbarui nama dan gambar dokter
+    function updateDoctorDetails(doctorId) {
+        $.ajax({
+            url: `https://hejvet.my.id/api/users/${doctorId}`, // URL API
+            method: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                // Asumsi API mengembalikan data nama dan foto_user
+                if (response) {
+                    const imageUrl = response.foto_user;
+                    const doctorName = response.nama;
+
+                    // Perbarui nama dokter
+                    $('.doctor-name').text(doctorName);
+
+                    // Perbarui gambar dokter
+                    $('.msg-img').css('background-image', `url('${imageUrl}')`);
+                } else {
+                    console.error('Data dokter tidak ditemukan dalam respons API.');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Gagal mengambil data dokter:', error);
+            }
+        });
+    }
+
+    // Ambil ID dokter dari URL
+    const doctorId = getQueryParam('id');
+    if (doctorId) {
+        updateDoctorDetails(doctorId);
+    } else {
+        console.error('ID dokter tidak ditemukan di URL.');
+    }
+});
+
+$('.navbar-profile').hover(function () {
+            const user = JSON.parse(localStorage.getItem('user')); // Retrieve user data from localStorage
+
+            if (user && user.id) {
+                // Clear any existing dropdown content to avoid duplicates
+                $('#userSettingsDropdown').empty();
+
+                // Append buttons with user-specific links
+                const settingsHtml = `
+                    <a href="useraccsettings.html?id=${user.id}">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                    <a href="../index.html">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </a>
+                `;
+
+                $('#userSettingsDropdown').append(settingsHtml); // Add to dropdown
+            } else {
+                // Fallback if no user data is found
+                $('#userSettingsDropdown').html('<p>User not logged in.</p>');
+            }
+                });
+
+                // Optional: Ensure dropdown stays open on hover
+                $('.navbar-profile').on('mouseleave', function () {
+                    $(this).removeClass('open');
+                });
+
+                $('.navbar-profile').on('mouseenter', function () {
+                    $(this).addClass('open');
+                });
+
+</script>
+</body>
+
+
+
+</html>

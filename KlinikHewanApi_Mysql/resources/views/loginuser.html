@@ -1,0 +1,66 @@
+<html>
+
+<head>
+      <title>HTML Login Form</title>
+      <link rel="stylesheet" href="../css/logstyle.css">
+</head>
+
+<body>
+      <div class="mainlogin">
+        <div class="header">
+            <a href="landingpage.html" class="back-btn">
+                <img src="../images/backbtn.svg" alt="Back" class="back-icon">
+        </a>
+        <h1>HEJ VET! USER LOGIN</h1>
+        </div>
+            <form action="">
+                  <label for="first">
+                        Username:
+                  </label>
+                  <input type="text" 
+                         id="first" 
+                         name="first" 
+                         placeholder="Enter your Username" required>
+
+                  <label for="password">
+                        Password:
+                  </label>
+                  <input type="password"
+                         id="password" 
+                         name="password"
+                         placeholder="Enter your Password" required>
+
+                  <div class="wrap">
+                        <button type="submit"
+                                onclick="solve()">
+                              Log in
+                        </button>
+                  </div>
+            </form>
+            <p>Forgot your password?
+                  <a href="fpwform.html"
+                     style="text-decoration: none;">
+                        Reset here
+                  </a>
+            </p>
+            <p>Are you an veterinarian?
+                <a href="logindok.html"
+                   style="text-decoration: none;">
+                      Log in here!
+                </a>
+          </p>
+      </div>
+</body>
+
+
+<script>
+      function solve() {
+          // Your existing logic for solving the problem
+          // ...
+  
+          // After solving, redirect the user
+          window.location.href = 'index.html';
+      }
+  </script>
+
+</html>

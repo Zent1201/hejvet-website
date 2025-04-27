@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="index.html" class="w3-bar-item w3-button"><span class="fa-solid fa-house"></span>&nbsp;&nbsp;Home Panel</a>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-indigo">
+        <button class="w3-button w3-indigo w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="../index.html"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="../loginadmin.html">Logout</a>
+    </div>
+
+    <div class="w3-container">
+        <div class="w3-container animated bounce">
+            <h1 class="w3-text-indigo"> Doctors List</h1>
+            <table class="w3-table">
+            <td>
+                <a href="admin_doctors_POST.html" class="w3-button w3-blue w1-small" th:href="@{/admin_doctors_POST.html (id=${reach.id})}">Tambah</a>
+            </td>
+            </table>
+
+            <table class="w3-table-all w3-hoverable">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Spesialisasi</th>
+                        <th>Harga Jasa</th>
+                        <th>Jadwal Kerja</th>
+                        <th>Gambar</th>
+                        <th>Tanggal Buat</th>
+                        <th>Tanggal Update</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="doctorTableBody">
+                    <!-- <tr th:each="reach : ${reach}">
+                        <td th:text="${reach.nama}"></td>
+                        <td th:text="${reach.spesialisasi}"></td>
+                        <td th:text="${reach.harga}"></td>
+                        <td th:text="${reach.jadwal}"></td>
+                        <td th:text="${reach.gambar}" class="message-column"></td>
+                        <td th:text="${reach.gambar}" class="message-column"></td>
+                        <td th:text="${reach.gambar}" class="message-column"></td>
+                        <td style="white-space: nowrap;">
+                            <a href="admin_doctors_PUT.html" class="w3-button w3-green w1-small" th:href="@{/delete_reachus (id=${reach.id})}">Update</a>
+                            <a class="w3-button w3-deep-orange w1-small" th:href="@{/delete_reachus (id=${reach.id})}" onclick="return confirm('Anda yakin ingin me-reset?')">Reset Password</a>
+                            <a class="w3-button w3-red w1-small" th:href="@{/delete_reachus (id=${reach.id})}" onclick="return confirm('Anda yakin ingin menghapus?')">Delete</a>
+                        </td>
+                    </tr> -->
+                </tbody>
+            </table>
+     
+    </div>
+</div>
+
+</body>
+
+
+<script>
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+<script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: 'https://hejvet.my.id/api/users', // URL API
+        method: 'GET',
+        headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('your_token_key') // Ambil token dari localStorage
+    },
+        success: function(response) {
+            console.log("Response from API:", response); // Log response untuk debugging
+
+            // Cek apakah response mengandung data dokter
+            if (response && response.doctors && Array.isArray(response.doctors)) {
+                response.doctors.forEach(function(doctor) {
+                    console.log("Doctor data:", doctor); // Log data dokter untuk verifikasi
+
+                    // Pastikan foto_user ada, jika tidak beri fallback null
+                    const photoUrl = doctor.foto_user ? doctor.foto_user : null;
+                    const harga = doctor.harga ? `Rp ${parseFloat(doctor.harga).toLocaleString('id-ID')}` : '-';
+
+                    // Format tanggal created_at dan updated_at jika ada
+                    const createdAt = doctor.created_at ? new Date(doctor.created_at).toLocaleString('id-ID') : '-';
+                    const updatedAt = doctor.updated_at ? new Date(doctor.updated_at).toLocaleString('id-ID') : '-';
+
+                    // Menyusun row untuk tabel dokter
+                    const row = `
+                        <tr>
+                            <td>${doctor.nama || '-'}</td>
+                            <td>${doctor.spesialisasi || '-'}</td>
+                            <td>${harga}</td>
+                            <td>
+                                ${doctor.jadwal_dokter || '-'} <br>
+                                ${doctor.jamkerja_dokter ? 'Pukul ' + doctor.jamkerja_dokter : '-'}
+                            </td>
+                            <td>${photoUrl ? `<img src="${photoUrl}" width="100" alt="Doctor Photo">` : '-'}</td>
+                            <td>${createdAt}</td>
+                            <td>${updatedAt}</td>
+                            <td>
+                                <a href="admin_doctors_PUT.html?id=${doctor.id}" class="w3-button w3-blue w3-small">Update</a>
+                                <a href="admin_doctors_RESETPW.html?id=${doctor.id}" class="w3-button w3-yellow">Reset Password</a>
+                                <button class="w3-button w3-red w3-small" onclick="deleteDoctor(${doctor.id}, this)">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+
+                    // Menambahkan row ke dalam tbody tabel
+                    $('#doctorTableBody').append(row);
+                });
+            } else {
+                console.warn("No doctors found in response."); // Peringatan jika tidak ada data dokter
+                $('#doctorTableBody').append('<tr><td colspan="8">No doctors available.</td></tr>');
+            }
+        },
+        error: function(error) {
+            console.error("Error fetching data:", error); // Menampilkan error di console
+            $('#doctorTableBody').append('<tr><td colspan="8">Failed to load doctor data.</td></tr>');
+        }
+    });
+});
+
+// Fungsi untuk menghapus dokter
+function deleteDoctor(id, buttonElement) {
+    // Konfirmasi penghapusan dengan SweetAlert
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to undo this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `https://hejvet.my.id/api/users/${id}`, // API URL untuk delete dokter
+                type: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token') // Jika menggunakan token untuk autentikasi
+                },
+                success: function(response) {
+                    // Menampilkan notifikasi berhasil
+                    Swal.fire({
+                        title: 'Deleted!',
+                        text: 'The doctor has been deleted.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+
+                    // Hapus baris dokter dari tabel setelah berhasil dihapus
+                    $(buttonElement).closest('tr').remove(); // Menghapus baris terkait
+                },
+                error: function(xhr, status, error) {
+                    // Menangani error dengan memberikan pesan yang lebih jelas
+                    if (xhr.status === 401) {
+                        Swal.fire({
+                            title: 'Unauthorized',
+                            text: 'You do not have permission to delete this doctor.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    } else if (xhr.status === 404) {
+                        Swal.fire({
+                            title: 'Not Found',
+                            text: 'Doctor not found.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Failed to delete doctor. Please try again later.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                    console.error('Error:', xhr.responseText);
+                }
+            });
+        }
+    });
+}
+
+
+    </script>
+
+</html>

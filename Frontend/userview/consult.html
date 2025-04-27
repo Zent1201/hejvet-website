@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>ap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="containerpet">
+
+        <header class="header">
+
+            <div class="logo">
+                <img src="images/hejvet.png" alt="Logo">
+            </div>
+        
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="mypet.html">Hewan</a>
+                <a href="service.html">Services</a>
+                <a href="dokters.html">Konsultasi</a>
+                <a href="riwayat.html">Riwayat</a>
+            </nav>
+        
+            <div class="dropdown navbar-profile">
+                <div class="dropbtn">
+                    <div class="profile-pic">
+                        <img src="images/usernav.png" alt="Profile Picture">
+                    </div>
+                </div>
+                <div class="dropdown-content">
+                    <a href="useraccsettings.html"><i class="fas fa-cog fa-fw"></i> Settings</a>
+                    <a href="../index.html"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="main" style="display: flex; flex-direction: column; gap: 15px;">
+
+            <div class="card-container">
+                <!-- Profile Card -->
+                <div class="profile-card">
+                    <div class="profile-info">
+                        <h3>Otto</h3>
+                        <a href="mypet-FORM.html" class="settings-btn">
+                        <button class="settings-btn">Pengaturan</button>
+                        </a>
+                        <ul>
+                            <li>Usia: 12 bulan</li>
+                            <li>Gender: Jantan</li>
+                            <li>Spesies: Kucing </li>
+                            <li>Ras: Angora</li>
+                        </ul>
+                    </div>
+                </div>
+            
+                <!-- Add Family Card -->
+                <div class="family-card">
+                    <div class="add-icon">
+                        <a href="mypet-FORM.html">+</a>
+                    </div>
+                    <p>Tambah Hewan</p>
+                </div>
+            </div>
+            
+            <div id="dimensions"> Width: <span id="width"></span>, Height: <span id="height"></span></div>
+        </main>
+        <section class="bannerpet"></section>
+
+        <section class="low-contentpet"></section>
+
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="logo-section">
+                    <img src="../images/hejvetbesar.png" alt="Logo">
+                </div>
+                <div class="links">
+                    <h3>LINKS</h3>
+                    <a href="index.html">Home</a>
+                    <a href="mypet.html">Hewan</a>
+                    <a href="service.html">Services</a>
+                    <a href="dokters.html">Konsultasi</a>
+                    <a href="riwayat.html">Riwayat</a>
+                </div>
+                <div class="socials">
+                    <h3>SOCIALS</h3>
+                    <a href="#"><i class="fa-brands fa-instagram"></i> hejvet.id</a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i> HEJ VET!</a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i> HEJ VET!</a>
+                </div>
+                <div class="contacts">
+                    <h3>CONTACTS</h3>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i> +62-8951-2345-6789</a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i> +62-8951-2345-6789</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 © HEJ VET! All rights reserved.</p>
+                <p>Website by AntiMubazir</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function updateDimensions() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            document.getElementById('width').textContent = width;
+            document.getElementById('height').textContent = height;
+        }
+
+        window.addEventListener('resize', updateDimensions);
+        document.addEventListener('DOMContentLoaded', updateDimensions);
+    </script>
+    <script>
+        function togglePopup() {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.classList.toggle('show');
+        }
+    </script>
+</body>
+
+
+
+</html>

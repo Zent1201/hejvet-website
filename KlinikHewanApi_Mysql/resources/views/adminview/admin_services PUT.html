@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+        <a href="admin_doktershome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user-doctor"></span>&nbsp;&nbsp;Dokter's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-teal w3-container">
+        <button class="w3-button w3-teal w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="/">Admin Panel</a>
+        <a class="w3-bar-item w3-button" href="/index"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="/login">Logout</a>
+    </div>
+
+    <div class="w3-container">
+        <h1 class="w3-text-teal"> Update Services</h1>
+        <form method="post" enctype="multipart/form-data" th:object="${productDto}" class="form-background">
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Nama Service</label>
+                <div class="w3-col s8">
+                    <input class="w3-input w3-border" th:field="${productDto.nama}">
+                    <p th:if="${#fields.hasErrors('nama')}" class="w3-text-red" th:errors="${productDto.nama}"></p>
+                </div>
+            </div>
+
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Deskripsi</label>
+                <div class="w3-col s8">
+                    <input class="w3-input w3-border" th:field="${productDto.nama}">
+                    <p th:if="${#fields.hasErrors('nama')}" class="w3-text-red" th:errors="${productDto.nama}"></p>
+                </div>
+            </div>
+
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Harga</label>
+                <div class="w3-col s8">
+                    <input class="w3-input w3-border" type="number" step="500" min="0" th:field="${productDto.harga}">
+                    <p th:if="${#fields.hasErrors('harga')}" class="w3-text-red" th:errors="${productDto.harga}"></p>
+                </div>
+            </div>
+
+            <div class="w3-row w3-margin-bottom">
+                <label class="w3-col s4 w3-text-black">Gambar</label>
+                <div class="w3-col s8">
+                    <input class="w3-input w3-border" type="file" th:field="${productDto.image}">
+                    <p th:if="${#fields.hasErrors('image')}" class="w3-text-red" th:errors="${productDto.image}"></p>
+                </div>
+            </div>
+
+            <div class="w3-row-padding w3-margin-top">
+                <button type="submit" class="w3-button w3-blue">Submit</button>
+                <a class="w3-button w3-red" href="admin_services.html" role="button">Cancel</a>
+            </div>

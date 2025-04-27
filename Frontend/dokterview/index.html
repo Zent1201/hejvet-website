@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/959b89fdbf.js" crossorigin="anonymous"></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>ap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="containerumum">
+
+        <header class="header">
+
+            <div class="logo">
+                <img src="../images/hejvet.png" alt="Logo">
+            </div>
+        
+            <nav class="navbar">
+                <!-- <a href="homedokter.html">Home</a>
+                <a href="dokteraturjadwal.html">Atur Jadwal</a>
+                <a href="konsultpasien dokter.html">Inbox Konsultasi</a> -->
+            </nav>
+        
+            <div class="dropdown navbar-profile">
+                <div class="dropbtn">
+                    <div class="profile-pic">
+                        <img src="../images/usernav.png" alt="Profile Picture">
+                    </div>
+                </div>
+                <div class="dropdown-content" id="userSettingsDropdown">
+            </div>
+        </header>
+
+        <main class="main" style="display: flex; flex-direction: column; gap: 15px;">
+            <div class="banneratas">
+                <div class="row">
+                    <div class="content">
+                        <h2></h2>
+                        <h3>Apa yang bisa kami bantu pada hari ini?</h3>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="icon-bar">
+                <div class="icon-item">
+                <a href="konsultpasien dokter.html"><i class="fa-solid fa-user-doctor"></i></a>
+                    <p>Konsultasi Pasien</p>
+                </div>
+                <!-- <div class="icon-item">
+                    <a href="dokteraturjadwal.html"><i class="fas fa-gear"></i></a>
+                    <p>Atur Jadwal Kerja</p>
+                </div> -->
+                <!-- <div class="icon-item">
+                    <a href="konsultpasien dokter.html"><i class="fas fa-hourglass"></i></a>
+                    <p>Riwayat Konsultasi</p>
+                </div> -->
+            </div>
+
+                <section id="antreanpasien">
+                    <div class="row">
+                        <div class="content">
+                            <span style="text-align: left;"><h3>Antrean Pasien Hari Ini</h3></span>
+                        </div>
+                        <a href="konsultpasien dokter.html" class="btn-secondary-xs btn-more see-all-link-icon">
+                            Lihat Semua <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="antrean-cards-container">
+                        <div class="antrean-cards-wrapper">
+                            <!-- Example of a detailed patient card -->
+                            <div class="antrean-card">
+                                <div class="antrean-info">
+                                    <h3 class="antrean-name">Loading...</h3>
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-calendar-alt"></i> 
+                                            <span class="label">Usia:</span> 
+                                            <span class="value">Loading...</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-venus-mars"></i> 
+                                            <span class="label">Gender:</span> 
+                                            <span class="value">Loading...</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-paw"></i> 
+                                            <span class="label">Spesies:</span> 
+                                            <span class="value">Loading...</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-dog"></i> 
+                                            <span class="label">Ras:</span> 
+                                            <span class="value">Loading...</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <div class="antrean-card">
+                                <div class="antrean-info">
+                                    <h3 class="antrean-name">Patient 2</h3>
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-calendar-alt"></i> 
+                                            <span class="label">Usia:</span> 
+                                            <span class="value">3 tahun</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-venus-mars"></i> 
+                                            <span class="label">Gender:</span> 
+                                            <span class="value">Betina</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-paw"></i> 
+                                            <span class="label">Spesies:</span> 
+                                            <span class="value">Anjing</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-dog"></i> 
+                                            <span class="label">Ras:</span> 
+                                            <span class="value">Bulldog</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="antrean-card">
+                                <div class="antrean-info">
+                                    <h3 class="antrean-name">Patient 3</h3>
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-calendar-alt"></i> 
+                                            <span class="label">Usia:</span> 
+                                            <span class="value">3 tahun</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-venus-mars"></i> 
+                                            <span class="label">Gender:</span> 
+                                            <span class="value">Betina</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-paw"></i> 
+                                            <span class="label">Spesies:</span> 
+                                            <span class="value">Anjing</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-dog"></i> 
+                                            <span class="label">Ras:</span> 
+                                            <span class="value">Bulldog</span>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                            <!-- More antrean cards as needed -->
+                        </div>
+                    </div>
+                </section>
+                
+            </section>
+            
+        </main>
+        <section class="low-contentumum"></section>
+
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="logo-section">
+                    <img src="../images/hejvetbesar.png" alt="Logo">
+                </div>
+                <div class="links">
+                    <h3>LINKS</h3>
+                    <a href="homedokter.html">Home</a>
+                    <a href="dokteraturjadwal.html">Atur Jadwal</a>
+                    <a href="konsultpasien dokter.html">Inbox Konsultasi</a>
+                </div>
+                <div class="socials">
+                    <h3>SOCIALS</h3>
+                    <a href="#"><i class="fa-brands fa-instagram"></i> hejvet.id</a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i> HEJ VET!</a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i> HEJ VET!</a>
+                </div>
+                <div class="contacts">
+                    <h3>CONTACTS</h3>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i> +62-8951-2345-6789</a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i> +62-8951-2345-6789</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 © HEJ VET! All rights reserved.</p>
+                <p>Website by AntiMubazir</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+    <script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+<script>
+$(document).ready(function () {
+    // Ambil data pengguna dari localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    // Jika data pengguna tidak ada, alihkan ke halaman login
+    if (!user) {
+        window.location.href = "../loginuser.html";
+        return; // Hentikan eksekusi kode berikutnya
+    }
+
+    // Jika ada, tampilkan data pengguna
+    if (user) {
+        // Tampilkan nama pengguna dengan role dokter di banner
+        $('.banneratas h2').text(`Halo ${user.nama}`); // Ganti konten <h2> dengan nama dokter
+
+        // Ambil ID dokter dari data pengguna (misalnya user.id)
+        const doctorId = user.id;
+
+        // Tambahkan link "Atur Jadwal Kerja" dengan ID dokter di bawah nama pengguna
+        $('.icon-bar').append(`
+            <div class="icon-item">
+                <a href="dokteraturjadwal.html?doctorId=${doctorId}" class="update-jadwal">
+                    <i class="fas fa-gear"></i>
+                </a>
+                <p>Atur Jadwal Kerja</p>
+            </div>
+            <div class="icon-item">
+                <a href="konsultpasien dokter.html"><i class="fas fa-hourglass"></i></a>
+                <p>Riwayat Konsultasi</p>
+            </div>
+        `);
+        $('.navbar').append(`
+            <a href="homedokter.html">Home</a>
+            <a href="dokteraturjadwal.html?doctorId=${doctorId}">Atur Jadwal</a>
+            <a href="konsultpasien dokter.html">Inbox Konsultasi</a>
+        `);
+    }
+
+    
+    $('.navbar-profile').hover(function () {
+        const user = JSON.parse(localStorage.getItem('user')); // Retrieve user data from localStorage
+
+        if (user && user.id) {
+            // Clear any existing dropdown content to avoid duplicates
+            $('#userSettingsDropdown').empty();
+
+            // Append buttons with user-specific links
+            const settingsHtml = `
+                <a href="doktersaccsettings.html?id=${user.id}">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <a href="../index.html">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </a>
+            `;
+
+            $('#userSettingsDropdown').append(settingsHtml); // Add to dropdown
+        } else {
+            // Fallback if no user data is found
+            $('#userSettingsDropdown').html('<p>User not logged in.</p>');
+        }
+    });
+
+    // Optional: Ensure dropdown stays open on hover
+    $('.navbar-profile').on('mouseleave', function () {
+        $(this).removeClass('open');
+    });
+
+    $('.navbar-profile').on('mouseenter', function () {
+        $(this).addClass('open');
+    });
+
+    // Ambil data pasien dari API
+    $.ajax({
+        url: 'https://hejvet.my.id/api/hewans',
+        method: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            // Bersihkan kontainer antrean sebelum ditambahkan
+            $('.antrean-cards-wrapper').empty();
+
+            // Loop melalui data pasien dan tambahkan ke dalam kontainer
+            response.forEach(function (pasien) {
+                const cardHtml = `
+                    <div class="antrean-card">
+                        <div class="antrean-info">
+                            <h3 class="antrean-name">${pasien.nama_hewan}</h3>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-calendar-alt"></i> 
+                                    <span class="label">Usia:</span> 
+                                    <span class="value">${pasien.umur} tahun</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-venus-mars"></i> 
+                                    <span class="label">Gender:</span> 
+                                    <span class="value">${pasien.jenis_kelamin}</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-paw"></i> 
+                                    <span class="label">Spesies:</span> 
+                                    <span class="value">${pasien.jenis_hewan}</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-dog"></i> 
+                                    <span class="label">Ras:</span> 
+                                    <span class="value">${pasien.spesies}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+
+                // Tambahkan kartu pasien ke dalam kontainer antrean
+                $('.antrean-cards-wrapper').append(cardHtml);
+            });
+        },
+        error: function (error) {
+            console.error('Terjadi kesalahan saat mengambil data pasien:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Gagal mengambil data pasien dari server!'
+            });
+        }
+    });
+});
+
+</script>
+</body>
+
+</html>

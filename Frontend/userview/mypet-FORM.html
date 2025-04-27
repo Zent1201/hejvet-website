@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/959b89fdbf.js" crossorigin="anonymous"></script>
+    <title>Tambah Hewan</title>
+</head>
+<body>
+    <div class="containerpet">
+        <header class="header">
+            <div class="logo">
+                <img src="../images/hejvet.png" alt="Logo">
+            </div>
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="mypet.html">Hewan</a>
+                <a href="service.html">Services</a>
+                <a href="dokters.html">Konsultasi</a>
+                <a href="riwayat.html">Riwayat</a>
+            </nav>
+            <div class="dropdown navbar-profile">
+                <div class="dropbtn">
+                    <div class="profile-pic">
+                        <img src="../images/usernav.png" alt="Profile Picture">
+                    </div>
+                </div>
+                <div class="dropdown-content" id="userSettingsDropdown">
+                </div>
+            </div>
+        </header>
+        <main class="main" id="addPetForm">
+            <div class="form-container">
+                <div class="form-header">
+                    <a href="mypet.html" class="back-btnform">
+                        <img src="../images/backbtn.png" alt="Back" class="back-icon">
+                    </a>
+                    <div class="header-text">Tambahkan informasi hewan Anda</div>
+                </div>
+                <div class="form-section">
+                    <label for="nama_hewan">Nama</label>
+                    <input type="text" id="nama_hewan" class="form-input" placeholder="Nama">
+                    
+                    <label for="gender">Gender</label>
+                    <div id="jenis_kelamin" class="gender-options">
+                        <label>
+                            <input type="radio" name="jenis_kelamin" value="Jantan"> Jantan
+                        </label>
+                        <label>
+                            <input type="radio" name="jenis_kelamin" value="Betina"> Betina
+                        </label>
+                    </div>
+                    
+                    <label for="umur">Usia</label>
+                    <input type="text" id="umur" class="form-input" placeholder="Usia dalam bulan">
+                    
+                    <label for="jenis_hewan">Spesies</label>
+                    <select id="jenis_hewan" class="form-input">
+                        <option value="">Pilih spesies</option>
+                        <option value="kucing">Kucing</option>
+                        <option value="anjing">Anjing</option>
+                        <option value="burung">Burung</option>
+                        <option value="ikan">Ikan</option>
+                    </select>
+
+                    <label for="spesies">Ras</label>
+                    <input type="text" id="spesies" class="form-input" placeholder="e.g Angora">
+                </div>
+                <button id="saveButton" class="save-button" disabled>Simpan Profil</button>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="logo-section">
+                    <img src="../images/hejvetbesar.png" alt="Logo">
+                </div>
+                <div class="links">
+                    <h3>LINKS</h3>
+                    <a href="index.html">Home</a>
+                    <a href="mypet.html">Hewan</a>
+                    <a href="service.html">Services</a>
+                    <a href="dokters.html">Konsultasi</a>
+                    <a href="riwayat.html">Riwayat</a>
+                </div>
+                <div class="socials">
+                    <h3>SOCIALS</h3>
+                    <a href="#"><i class="fa-brands fa-instagram"></i> hejvet.id</a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i> HEJ VET!</a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i> HEJ VET!</a>
+                </div>
+                <div class="contacts">
+                    <h3>CONTACTS</h3>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i> +62-8951-2345-6789</a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i> +62-8951-2345-6789</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 © HEJ VET! All rights reserved.</p>
+                <p>Website by AntiMubazir</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+    <script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+    <script>
+ $(document).ready(function () {
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+    const pasienId = user?.id;
+
+    if (!token || !pasienId) {
+        alert("Anda harus login terlebih dahulu.");
+        window.location.href = '../loginuser.html';
+        return;
+    }
+
+    const saveButton = $('#saveButton');
+
+    // Fungsi untuk validasi form
+    function validateForm() {
+        const namaHewan = $('#nama_hewan').val().trim();
+        const jenisKelamin = $('input[name="jenis_kelamin"]:checked').val();
+        const umur = $('#umur').val().trim();
+        const jenisHewan = $('#jenis_hewan').val();
+        const spesies = $('#spesies').val().trim();
+
+        // Validasi sederhana
+        if (namaHewan && jenisKelamin && umur && jenisHewan && spesies) {
+            saveButton.prop('disabled', false).addClass('active');
+        } else {
+            saveButton.prop('disabled', true).removeClass('active');
+        }
+    }
+
+    // Panggil validasi form setiap kali input berubah
+    $('input, select').on('input change', validateForm);
+
+    // Kirim data ke API saat tombol simpan diklik
+    saveButton.on('click', function () {
+        // Ambil data dari form
+        const data = {
+            nama_hewan: $('#nama_hewan').val().trim(),
+            jenis_kelamin: $('input[name="jenis_kelamin"]:checked').val(),
+            umur: $('#umur').val().trim(),
+            jenis_hewan: $('#jenis_hewan').val(),
+            spesies: $('#spesies').val().trim(),
+            pasien_id: pasienId
+        };
+
+        // Pastikan jenis_kelamin memiliki nilai yang valid
+        if (data.jenis_kelamin !== "Jantan" && data.jenis_kelamin !== "Betina") {
+            Swal.fire('Gagal!', 'Jenis kelamin harus Jantan atau Betina.', 'error');
+            return;
+        }
+
+        // Kirim data ke API
+        $.ajax({
+            url: 'https://hejvet.my.id/api/hewans',
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(data),
+            success: function () {
+                Swal.fire('Berhasil!', 'Hewan berhasil ditambahkan.', 'success').then(() => {
+                    window.location.href = 'mypet.html';
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("Error:", error);
+                Swal.fire('Gagal!', 'Terjadi kesalahan, coba lagi.', 'error');
+            }
+        });
+    });
+
+    // Panggil validasi form pada awalnya untuk menentukan state awal tombol
+    validateForm();
+});
+
+$('.navbar-profile').hover(function () {
+        const user = JSON.parse(localStorage.getItem('user')); // Retrieve user data from localStorage
+
+        if (user && user.id) {
+            // Clear any existing dropdown content to avoid duplicates
+            $('#userSettingsDropdown').empty();
+
+            // Append buttons with user-specific links
+            const settingsHtml = `
+                <a href="useraccsettings.html?id=${user.id}">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <a href="../index.html">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </a>
+            `;
+
+            $('#userSettingsDropdown').append(settingsHtml); // Add to dropdown
+        } else {
+            // Fallback if no user data is found
+            $('#userSettingsDropdown').html('<p>User not logged in.</p>');
+        }
+    });
+
+    // Optional: Ensure dropdown stays open on hover
+    $('.navbar-profile').on('mouseleave', function () {
+        $(this).removeClass('open');
+    });
+
+    $('.navbar-profile').on('mouseenter', function () {
+        $(this).addClass('open');
+    });
+
+
+    </script>
+</body>
+</html>

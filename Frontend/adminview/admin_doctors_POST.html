@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="index.html" class="w3-bar-item w3-button"><span class="fa-solid fa-house"></span>&nbsp;&nbsp;Home Panel</a>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-indigo">
+        <button class="w3-button w3-indigo w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="../index.html"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="../loginadmin.html">Logout</a>
+    </div>
+
+    <div class="w3-container">
+        <div class="w3-container animated bounce">
+            <h1 class="w3-text-indigo">Add Dokter</h1>
+    
+            <form id="addDoctorForm" method="POST" enctype="multipart/form-data" class="form-background">
+                <!-- Nama Dokter -->
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label class="w3-quarter">Nama Dokter</label>
+                    <div class="w3-threequarter">
+                        <input class="w3-input" type="text" id="nama" name="nama" required>
+                        <p class="w3-text-red" id="nama-error"></p>
+                    </div>
+                </div>
+    
+                <!-- Username -->
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label class="w3-quarter">Username</label>
+                    <div class="w3-threequarter">
+                        <input class="w3-input" type="text" id="username" name="username" required>
+                        <p class="w3-text-red" id="username-error"></p>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label class="w3-quarter">Spesialisasi</label>
+                    <div class="w3-threequarter">
+                        <select class="w3-select" name="spesialisasi" id="spesialisasi" required>
+                            <option value="" disabled selected>Pilih Spesialisasi</option>
+                            <option value="Spesialis Hewan Unggas">Spesialis Hewan Unggas</option>
+                            <option value="Spesialis Hewan Anjing & Kucing">Spesialis Hewan Anjing & Kucing</option>
+                            <option value="Spesialis Hewan Reptil">Spesialis Hewan Reptil</option>
+                            <option value="Spesialis Hewan Ternak">Spesialis Hewan Ternak</option>
+                            <option value="Spesialis Hewan Amfibi">Spesialis Hewan Amfibi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label class="w3-quarter">Biaya per 30 menit</label>
+                    <div class="w3-threequarter">
+                        <input class="w3-input" type="number" name="harga" id="harga" step="1000" min="0" placeholder="Rp">
+                    </div>
+                </div>
+    
+                <!-- Jadwal Dokter -->
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Jadwal Dokter</label>
+                <div class="w3-threequarter">
+                    <!-- Checkbox untuk memilih hari-hari -->
+                    <label><input type="checkbox" class="jadwal-hari" value="Senin"> Senin</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Selasa"> Selasa</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Rabu"> Rabu</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Kamis"> Kamis</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Jumat"> Jumat</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Sabtu"> Sabtu</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Minggu"> Minggu</label>
+                    <p class="w3-text-red" id="jadwal-error"></p>
+                </div>
+            </div>
+
+            <!-- Jam Kerja Dokter -->
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Jam Kerja Dokter</label>
+                <div class="w3-threequarter">
+                    <!-- Input waktu mulai dan selesai -->
+                    <label>Pukul</label>
+                    <input class="w3-input" type="time" id="jam_mulai" name="jam_mulai" required>
+                    <label>Sampai</label>
+                    <input class="w3-input" type="time" id="jam_selesai" name="jam_selesai" required>
+                    <p class="w3-text-red" id="jamkerja-error"></p>
+                </div>
+            </div>
+
+                
+                
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label class="w3-quarter">Password</label>
+                    <div class="w3-threequarter" style="display: flex; align-items: center;">
+                        <input class="w3-input" type="password" id="password" name="password" required>
+                        <span onclick="togglePassword('password', this)" style="cursor: pointer; margin-left: 10px;">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                    <p th:if="${#fields.hasErrors('nama')}" class="w3-text-red" th:errors="${productDto.nama}"></p>
+                </div>
+                
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label class="w3-quarter">Konfirmasi Password</label>
+                    <div class="w3-threequarter" style="display: flex; align-items: center;">
+                        <input type="password" class="w3-input" th:field="${productDto.nama}" id="confirmPassword" style="flex: 1;">
+                        <span onclick="togglePassword('confirmPassword', this)" style="cursor: pointer; margin-left: 10px;">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                    <p th:if="${#fields.hasErrors('nama')}" class="w3-text-red" th:errors="${productDto.nama}"></p>
+                </div>
+    
+                
+                
+    
+                <!-- Foto Dokter -->
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label class="w3-quarter">Foto Dokter</label>
+                    <div class="w3-threequarter">
+                        <img id="imagePreview" alt="Doctor Image" width="150" class="w3-margin-bottom">
+                        <input class="w3-input" type="file" name="foto_user" id="foto_user" accept="image/*">
+                    </div>
+                </div>
+
+                <!-- Role -->
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label class="w3-quarter">Role</label>
+                    <div class="w3-threequarter">
+                        <select class="w3-select" id="role" name="role" required>
+                            <option value="dokter">Dokter</option>
+                        </select>
+                        <p class="w3-text-red" id="role-error"></p>
+                    </div>
+                </div>
+    
+                <!-- Button Submit -->
+                <div class="w3-row-padding w3-margin-top">
+                    <button type="submit" class="w3-button w3-blue">Submit</button>
+                    <a class="w3-button w3-red" href="admin_doctors.html" role="button">Cancel</a>
+                </div
+            </form>
+        </div>
+    </div>
+    
+    
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+<script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+
+<script>
+   $(document).ready(function () {
+    // Show image preview when selecting an image
+    $('#foto_user').on('change', function () {
+        var file = this.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result).show();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Handle submit form addDoctorForm
+    $('#addDoctorForm').submit(function (e) {
+        e.preventDefault();  // Prevent the default form submission
+    
+        // Create a new FormData object with form data
+        var formData = new FormData(this);
+        
+        // Collect the selected days for the doctor's schedule
+        var selectedDays = [];
+        $('.jadwal-hari:checked').each(function () {
+            selectedDays.push($(this).val());
+        });
+
+        // Add the schedule (selected days) and working hours (start and end time) to the form data
+        formData.append('jadwal_dokter', selectedDays.join(' - ')); // Save days as comma-separated string
+        formData.append('jamkerja_dokter', $('#jam_mulai').val() + ' - ' + $('#jam_selesai').val()); // Combine start and end time
+
+        // Send POST request to API
+        $.ajax({
+            url: 'https://hejvet.my.id/api/users',  // Adjust to your API URL
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('your_token_key') // Ambil token dari localStorage
+            },
+            success: function(response) {
+                // Display success notification with SweetAlert
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Dokter berhasil ditambahkan!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Redirect to doctor list page after successful addition
+                    window.location.href = 'admin_doctors.html';
+                });
+            },
+            error: function(xhr, status, error) {
+                // Handle error with SweetAlert
+                let errorMessage = 'Terjadi kesalahan saat menambah dokter.';
+                
+                if (xhr.status === 422) {
+                    // Validation error (e.g., invalid data)
+                    errorMessage = 'Data tidak valid. Pastikan semua field terisi dengan benar.';
+                } else if (xhr.status === 401) {
+                    // Unauthorized error
+                    errorMessage = 'Anda tidak memiliki izin untuk menambah dokter.';
+                }
+
+                Swal.fire({
+                    title: 'Error!',
+                    text: errorMessage,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                
+                console.error(error);
+            }
+        });
+    });
+});
+
+</script>
+
+    
+
+</body>
+</html>

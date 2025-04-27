@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="index.html" class="w3-bar-item w3-button"><span class="fa-solid fa-house"></span>&nbsp;&nbsp;Home Panel</a>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-indigo">
+        <button class="w3-button w3-indigo w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="../index.html"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="../loginuser.html">Logout</a>
+    </div>
+
+    <div class="banneratas">
+        <div class="row">
+            <div class="content">
+                <h2>Halo Admin!</h2>
+                <h3>Apa yang bisa kami bantu pada hari ini?</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-container">
+        <!-- Dashboard Container -->
+        <div class="w3-container w3-card w3-white w3-margin">
+            <h3>Dashboard Overview</h3>
+            <div class="w3-row-padding">
+              
+              <!-- Total Sales Doughnut Chart -->
+              <div class="w3-third">
+                <h4>Total Sales</h4>
+                <canvas id="totalSalesChart"></canvas>
+              </div>
+          
+              <!-- Services Sales Bar Chart -->
+              <div class="w3-third">
+                <h4>Services Sales</h4>
+                <canvas id="servicesChart"></canvas>
+              </div>
+          
+              <!-- Consultation Sales Bar Chart -->
+              <div class="w3-third">
+                <h4>Consultation Sales</h4>
+                <canvas id="consultationChart"></canvas>
+              </div>
+            </div>
+        </div>  
+
+        <div class="w3-container animated bounce">
+        <h1 class="w3-text-indigo">Admins</h1>
+        <table class="w3-table">
+            <td>
+                <a href="admin_admins_POST.html" class="w3-button w3-blue w1-small" th:href="@{/admin_doctors_POST.html (id=${reach.id})}">Tambah</a>
+            </td>
+            </table>
+
+            <table class="w3-table-all w3-hoverable" id="adminTableBody">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Username</th>
+                        <th>Tanggal Buat</th>
+                        <th>Tanggal Update</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="reach : ${reach}">
+                        <td th:text="${reach.nama}"></td>
+                        <td th:text="${reach.jadwal}"></td>
+                        <td th:text="${reach.gambar}" class="message-column"></td>
+                        <td style="white-space: nowrap;">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</div>
+
+
+<script>
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Options for compact charts with visible legends and tooltips
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: true,  // Keeps the charts proportional
+    plugins: {
+      legend: { display: true },
+      tooltip: { enabled: true }
+    },
+    scales: {
+      y: { beginAtZero: true }
+    }
+  };
+
+  // Total Sales Doughnut Chart
+  new Chart(document.getElementById('totalSalesChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Services', 'Consultations'],
+      datasets: [{ data: [500, 300], backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)'] }]
+    },
+    options: chartOptions
+  });
+
+  // Services Sales Bar Chart
+  new Chart(document.getElementById('servicesChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Grooming Hewan Besar', 'Grooming Hewan Kecil', 'Vaksinasi'],
+      datasets: [{ label: 'Sales', data: [200, 150, 150], backgroundColor: 'rgba(54, 162, 235, 0.6)' }]
+    },
+    options: chartOptions
+  });
+
+  // Consultation Sales Bar Chart
+  new Chart(document.getElementById('consultationChart'), {
+    type: 'bar',
+    data: {
+      labels: ['General Checkup', 'Emergency', 'Spesialis'],
+      datasets: [{ label: 'Sales', data: [120, 100, 80], backgroundColor: 'rgba(255, 159, 64, 0.6)' }]
+    },
+    options: chartOptions
+  });
+</script>
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+<script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+    // Ambil data pengguna dari localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    // Validasi apakah pengguna ada di localStorage dan role adalah admin
+    if (!user || user.role !== 'admin') {
+        Swal.fire({
+            title: 'Access Denied',
+            text: 'You do not have permission to view this page.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.href = "../loginuser.html"; // Arahkan pengguna keluar
+        });
+        return; // Hentikan eksekusi jika bukan admin
+    }
+
+    // Jika validasi lolos, lakukan permintaan data admin
+    $.ajax({
+        url: 'https://hejvet.my.id/api/users', // API URL
+        method: 'GET',
+        success: function(response) {
+            console.log("Response from API:", response); // Log the entire response for debugging
+
+            // Lanjutkan jika pengguna adalah admin
+            if (response.admins) {
+                response.admins.forEach(function(admin) {
+                    console.log("admin data:", admin); // Log each admin data for verification
+
+                    const photoUrl = admin.foto_user ? admin.foto_user : null;
+                    const harga = admin.harga ? `Rp ${admin.harga.toLocaleString()}` : '-';
+
+                    // Format created_at and updated_at
+                    const createdAt = admin.created_at ? new Date(admin.created_at).toLocaleString('id-ID') : '-';
+                    const updatedAt = admin.updated_at ? new Date(admin.updated_at).toLocaleString('id-ID') : '-';
+
+                    const row = `
+                        <tr>
+                            <td>${admin.nama || '-'}</td>
+                            <td>${admin.username || '-'}</td>
+                            <td>${createdAt}</td>
+                            <td>${updatedAt}</td>
+                              <td>${admin.status|| 'Aktif'}</td>
+                            <td>
+                                <a href="admin_admins_PUT.html?id=${admin.id}" class="w3-button w3-blue w3-small">Update</a>
+                                <button class="w3-button w3-yellow w3-small" onclick="resetPassword(${admin.id})">Reset Password</button>
+                                <button class="w3-button w3-red w3-small" onclick="deleteadmin(${admin.id}, this)">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+
+                    $('#adminTableBody').append(row);
+                });
+            } else {
+                console.warn("No admins found in response."); // Warn if no admins are found
+                $('#adminTableBody').append('<tr><td colspan="8">No admins available.</td></tr>');
+            }
+        },
+        error: function(error) {
+            console.error("Error fetching data:", error); // Display error message in console
+            $('#adminTableBody').append('<tr><td colspan="8">Failed to load admin data.</td></tr>');
+        }
+    });
+});
+
+// Fungsi untuk menghapus admin tetap sama
+
+    </script>
+
+
+</body>
+</html>

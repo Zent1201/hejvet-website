@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="index.html" class="w3-bar-item w3-button"><span class="fa-solid fa-house"></span>&nbsp;&nbsp;Home Panel</a>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-indigo">
+        <button class="w3-button w3-indigo w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="../index.html"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="../loginadmin.html">Logout</a>
+    </div>
+    
+<div class="w3-container">
+    <div class="w3-container animated bounce">
+        <h1 class="w3-text-indigo">Web Bars</h1>
+        <table class="w3-table-all w3-hoverable">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Telepon</th>
+                    <th>Email</th>
+                    <th>Pesan</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reach : ${reach}">
+                    <td th:text="${reach.nama}"></td>
+                    <td th:text="${reach.telepon}"></td>
+                    <td th:text="${reach.email}"></td>
+                    <td th:text="${reach.message}" class="message-column"></td>
+                    <td style="white-space: nowrap;">
+                        <a class="w3-button w3-red w3-small" th:href="@{/delete_reachus (id=${reach.id})}" onclick="return confirm('Anda yakin ingin menghapus?')">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 class="w3-text-indigo">Layanan's</h1>
+        <table class="w3-table-all w3-hoverable">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Telepon</th>
+                    <th>Email</th>
+                    <th>Pesan</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reach : ${reach}">
+                    <td th:text="${reach.nama}"></td>
+                    <td th:text="${reach.telepon}"></td>
+                    <td th:text="${reach.email}"></td>
+                    <td th:text="${reach.message}" class="message-column"></td>
+                    <td style="white-space: nowrap;">
+                        <a class="w3-button w3-red w3-small" th:href="@{/delete_reachus (id=${reach.id})}" onclick="return confirm('Anda yakin ingin menghapus?')">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 class="w3-text-indigo">Select Dokter Rekomendasi</h1>
+        <table class="w3-table w3-bordered">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Deskripsi</th>
+                </tr>
+            </thead>
+            <tbody id="doctorTable">
+                <!-- Rows will be populated dynamically -->
+            </tbody>
+        </table>
+
+    <button onclick="updateFeaturedDoctors()" class="w3-button w3-blue w3-margin-top">Update Featured Doctors</button>
+
+    <!-- Display Selected Featured Doctors -->
+    <h2 class="w3-text-indigo">Featured Doctors in "Dokter Rekomendasi"</h2>
+    <div id="featuredDoctors" class="w3-row-padding w3-margin-top">
+        <!-- Featured doctor cards will be displayed here -->
+    </div>
+</div>
+
+</div>
+
+<script>
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+
+
+    // Example doctor data (simulate fetching from the database)
+    const doctors = [
+        { id: 1, name: "Dr. Sarah Johnson", specialization: "Anesthesiologist", expertise: "Pain management and critical care" },
+        { id: 2, name: "Dr. Mark Tan", specialization: "Cardiologist", expertise: "Heart health and surgery" },
+        { id: 3, name: "Dr. Emily Wu", specialization: "Neurologist", expertise: "Brain health and neurological disorders" },
+        { id: 4, name: "Dr. James Smith", specialization: "Orthopedic Surgeon", expertise: "Bone and joint care" }
+    ];
+
+    const selectedDoctorIds = new Set(); // Track selected doctor IDs
+
+    // Populate the doctor selection table
+    function populateDoctorTable() {
+        const doctorTable = document.getElementById('doctorTable');
+        doctorTable.innerHTML = '';
+
+        doctors.forEach(doctor => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td><input type="checkbox" onchange="toggleDoctorSelection(${doctor.id})"></td>
+                <td>${doctor.name}</td>
+                <td>${doctor.specialization}</td>
+                <td>${doctor.expertise}</td>
+            `;
+            doctorTable.appendChild(row);
+        });
+    }
+
+    // Toggle doctor selection
+    function toggleDoctorSelection(doctorId) {
+        if (selectedDoctorIds.has(doctorId)) {
+            selectedDoctorIds.delete(doctorId);
+        } else {
+            selectedDoctorIds.add(doctorId);
+        }
+    }
+
+    // Update featured doctors display
+    function updateFeaturedDoctors() {
+        const featuredDoctorsDiv = document.getElementById('featuredDoctors');
+        featuredDoctorsDiv.innerHTML = '';
+
+        doctors.forEach(doctor => {
+            if (selectedDoctorIds.has(doctor.id)) {
+                const doctorCard = document.createElement('div');
+                doctorCard.className = 'w3-col m3 w3-margin-bottom w3-card-4 w3-padding w3-center';
+
+                doctorCard.innerHTML = `
+                    <img src="https://via.placeholder.com/100" alt="Doctor Image" class="w3-circle" style="width:60%">
+                    <h3>${doctor.name}</h3>
+                    <p>${doctor.specialization}</p>
+                    <p>${doctor.expertise}</p>
+                `;
+                featuredDoctorsDiv.appendChild(doctorCard);
+            }
+        });
+    }
+
+    // Initialize doctor table
+    populateDoctorTable();
+</script>
+
+</body>
+</html>

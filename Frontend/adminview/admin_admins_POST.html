@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="adminhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-house"></span>&nbsp;&nbsp;Home Panel</a>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="index.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-indigo">
+        <button class="w3-button w3-indigo w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="../index.html"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="../loginadmin.html">Logout</a>
+    </div>
+
+    <div class="w3-container">
+        <div class="w3-container animated bounce">
+        <h1 class="w3-text-indigo">Add Admins</h1>
+
+        <form method="post" enctype="multipart/form-data" th:object="${productDto}" class="form-background" id="adminForm">
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Nama Admin</label>
+                <div class="w3-threequarter">
+                    <input class="w3-input" type="text" id="nama" name="nama" required>
+                    <p class="w3-text-red" id="nama-error"></p>
+                </div>
+            </div>
+            
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Username</label>
+                <div class="w3-threequarter">
+                    <input class="w3-input" type="text" id="username" name="username" required>
+                    <p class="w3-text-red" id="username-error"></p>
+                </div>
+            </div>
+
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Password</label>
+                <div class="w3-threequarter" style="display: flex; align-items: center;">
+                    <input type="password" class="w3-input" th:field="${productDto.nama}" id="password" style="flex: 1;">
+                    <span onclick="togglePassword('password', this)" style="cursor: pointer; margin-left: 10px;">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+                <p th:if="${#fields.hasErrors('nama')}" class="w3-text-red" th:errors="${productDto.nama}"></p>
+            </div>
+            
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Konfirmasi Password</label>
+                <div class="w3-threequarter" style="display: flex; align-items: center;">
+                    <input type="password" class="w3-input" th:field="${productDto.nama}" id="confirmPassword" style="flex: 1;">
+                    <span onclick="togglePassword('confirmPassword', this)" style="cursor: pointer; margin-left: 10px;">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+                <p th:if="${#fields.hasErrors('nama')}" class="w3-text-red" th:errors="${productDto.nama}"></p>
+            </div>
+            
+
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Role</label>
+                <div class="w3-threequarter">
+                    <select class="w3-select" id="role" name="role" required>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <p class="w3-text-red" id="role-error"></p>
+                </div>
+            </div>
+
+
+            <div class="w3-row-padding w3-margin-top">
+                <button type="submit" href="adminhome.html" class="w3-button w3-blue">Submit</button>
+                <a class="w3-button w3-red" href="adminhome.html" role="button">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+
+<script>
+    // Populate hours
+    function populateTimeOptions() {
+        for (let i = 0; i < 24; i++) {
+            const option = document.createElement("option");
+            option.value = i;
+            option.textContent = String(i).padStart(2, '0');
+            document.getElementById("monday-start-hour").appendChild(option);
+            document.getElementById("monday-end-hour").appendChild(option.cloneNode(true));
+        }
+
+        // Populate minutes (every 15 minutes as example)
+        const minutes = ["00", "15", "30", "45"];
+        minutes.forEach(min => {
+            const option = document.createElement("option");
+            option.value = min;
+            option.textContent = min;
+            document.getElementById("monday-start-minute").appendChild(option);
+            document.getElementById("monday-end-minute").appendChild(option.cloneNode(true));
+        });
+    }
+
+    // Run the function to populate options when the page loads
+    document.addEventListener("DOMContentLoaded", populateTimeOptions);
+</script>
+<script>
+    function togglePassword(id, icon) {
+        const passwordField = document.getElementById(id);
+        const isPassword = passwordField.type === "password";
+        passwordField.type = isPassword ? "text" : "password";
+        icon.querySelector("i").classList.toggle("fa-eye");
+        icon.querySelector("i").classList.toggle("fa-eye-slash");
+    }
+</script>
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+<script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+<script>
+$(document).ready(function () {
+        $('#adminForm').on('submit', function (e) {
+            e.preventDefault();
+
+            // Clear error messages
+            $('.w3-text-red').text('');
+
+            // Get form data
+            const formData = {
+                nama: $('#nama').val(),
+                username: $('#username').val(),
+                password: $('#password').val(),
+                confirmPassword: $('#confirmPassword').val(),
+                role: $('#role').val(),
+            };
+
+            // Validate passwords
+            if (formData.password !== formData.confirmPassword) {
+                $('#confirmPassword-error').text('Password dan konfirmasi password tidak cocok.');
+                return;
+            }
+
+            // Send AJAX request
+            $.ajax({
+                url: 'https://hejvet.my.id/api/users', 
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function () {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Admin berhasil ditambahkan.',
+                    }).then(() => {
+                        window.location.href = 'adminhome.html';
+                    });
+                },
+                error: function (xhr) {
+                    if (xhr.responseJSON && xhr.responseJSON.errors) {
+                        // Display validation errors
+                        const errors = xhr.responseJSON.errors;
+                        if (errors.nama) {
+                            $('#nama-error').text(errors.nama[0]);
+                        }
+                        if (errors.username) {
+                            $('#username-error').text(errors.username[0]);
+                        }
+                        if (errors.password) {
+                            $('#password-error').text(errors.password[0]);
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: 'Terjadi kesalahan saat menambahkan admin.',
+                        });
+                    }
+                },
+            });
+        });
+    });
+
+</script>
+
+</body>
+</html>

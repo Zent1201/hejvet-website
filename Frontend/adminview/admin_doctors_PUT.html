@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="index.html" class="w3-bar-item w3-button"><span class="fa-solid fa-house"></span>&nbsp;&nbsp;Home Panel</a>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-indigo">
+        <button class="w3-button w3-indigo w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="../index.html"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="../loginadmin.html">Logout</a>
+    </div>
+
+    <div class="w3-container">
+        <h1 class="w3-text-teal">Update Doctor</h1>
+    
+        <form id="updateDoctorForm" enctype="multipart/form-data" class="form-background">
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Nama Doctor</label>
+                <div class="w3-threequarter">
+                    <input class="w3-input" name="nama" id="nama" placeholder="Nama Doctor" required>
+                </div>
+            </div>
+    
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Spesialisasi</label>
+                <div class="w3-threequarter">
+                    <select class="w3-select" name="spesialisasi" id="spesialisasi" required>
+                        <option value="" disabled selected>Pilih Spesialisasi</option>
+                        <option value="Spesialis Hewan Unggas">Spesialis Hewan Unggas</option>
+                        <option value="Spesialis Hewan Anjing & Kucing">Spesialis Hewan Anjing & Kucing</option>
+                        <option value="Spesialis Hewan Reptil">Spesialis Hewan Reptil</option>
+                        <option value="Spesialis Hewan Ternak">Spesialis Hewan Ternak</option>
+                        <option value="Spesialis Hewan Amfibi">Spesialis Hewan Amfibi</option>
+                    </select>
+                </div>
+            </div>
+    
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Biaya per 30 menit</label>
+                <div class="w3-threequarter">
+                    <input class="w3-input" type="number" name="harga" id="harga" step="1000" min="0" placeholder="Rp">
+                </div>
+            </div>
+
+                         <!-- Jadwal Dokter -->
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Jadwal Dokter</label>
+                <div class="w3-threequarter">
+                    <!-- Checkbox untuk memilih hari-hari -->
+                    <label><input type="checkbox" class="jadwal-hari" value="Senin"> Senin</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Selasa"> Selasa</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Rabu"> Rabu</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Kamis"> Kamis</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Jumat"> Jumat</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Sabtu"> Sabtu</label>
+                    <label><input type="checkbox" class="jadwal-hari" value="Minggu"> Minggu</label>
+                    <p class="w3-text-red" id="jadwal-error"></p>
+                </div>
+            </div>
+
+            <!-- Jam Kerja Dokter -->
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Jam Kerja Dokter</label>
+                <div class="w3-threequarter">
+                    <!-- Input waktu mulai dan selesai -->
+                    <label>Pukul</label>
+                    <input class="w3-input" type="time" id="jam_mulai" name="jam_mulai" required>
+                    <label>Sampai</label>
+                    <input class="w3-input" type="time" id="jam_selesai" name="jam_selesai" required>
+                    <p class="w3-text-red" id="jamkerja-error"></p>
+                </div>
+            </div>
+
+    
+            <div class="w3-row-padding w3-margin-bottom">
+                <label class="w3-quarter">Foto Dokter</label>
+                <div class="w3-threequarter">
+                    <img id="previewImage" alt="Doctor Image" width="150" class="w3-margin-bottom">
+                    <input class="w3-input" type="file" name="foto_user" id="foto_user" accept="image/*">
+                </div>
+            </div>
+    
+            <div class="w3-row-padding w3-margin-top">
+                <button type="submit" class="w3-button w3-blue">Submit</button>
+                <a class="w3-button w3-red" href="admin_doctors.html" role="button">Cancel</a>
+            </div>
+        </form>
+    </div>
+    
+
+<script>
+function w3_open() {
+document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+<script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+
+
+
+<script>
+ $(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const doctorId = urlParams.get('id');
+    
+    if (doctorId) {
+        // Load doctor data
+        $.ajax({
+            url: `https://hejvet.my.id/api/users/${doctorId}`,
+            method: 'GET',
+            success: function(response) {
+                $('#nama').val(response.nama);
+                $('#spesialisasi').val(response.spesialisasi);
+                $('#harga').val(response.harga);
+    
+                // Menampilkan gambar sebelumnya
+                if (response.foto_user) {
+                    $('#previewImage').attr('src', `https://hejvet.my.id/storage/${response.foto_user}`);
+                }
+
+                // Set jadwal dokter (checkbox)
+                if (response.jadwal_dokter) {
+                    const jadwal = response.jadwal_dokter.split(' - '); // Misalnya: "Senin,Selasa,Kamis"
+                    $('.jadwal-hari').each(function() {
+                        if (jadwal.includes($(this).val())) {
+                            $(this).prop('checked', true); // Check the checkboxes based on jadwal
+                        }
+                    });
+                }
+
+                // Set jam kerja dokter (07:00 - 15:00)
+                if (response.jamkerja_dokter) {
+                    const jamkerja = response.jamkerja_dokter.split('-');
+                    $('#jam_mulai').val(jamkerja[0].trim());
+                    $('#jam_selesai').val(jamkerja[1].trim());
+                }
+            },
+            error: function(error) {
+                console.error("Error loading doctor data:", error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Gagal memuat data dokter.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    }
+
+    // Handle form submission for update
+    $('#updateDoctorForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        // Ambil data jadwal (hari-hari yang dipilih)
+        const selectedJadwal = [];
+        $('.jadwal-hari:checked').each(function() {
+            selectedJadwal.push($(this).val());
+        });
+
+        // Ambil data jam kerja
+        const jamMulai = $('#jam_mulai').val();
+        const jamSelesai = $('#jam_selesai').val();
+        const jamKerja = jamMulai && jamSelesai ? `${jamMulai} - ${jamSelesai}` : ''; // Format jamkerja
+
+        // Siapkan data yang akan dikirim
+        let formData = new FormData(this);
+        formData.append('jadwal_dokter', selectedJadwal.join(' - ')); // Gabungkan jadwal menjadi string
+        formData.append('jamkerja_dokter', jamKerja); // Tambahkan jam kerja dokter
+
+        formData.append('_method', 'PUT'); // Laravel method spoofing
+
+        $.ajax({
+            url: `https://hejvet.my.id/api/users/${doctorId}`,
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('your_token_key') // Ambil token dari localStorage
+            },
+            success: function(response) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Data dokter berhasil di-update.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = 'admin_doctors.html';
+                });
+            },
+            error: function(error) {
+                console.error("Error updating doctor data:", error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Gagal mengupdate data dokter.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    });
+
+    // Preview gambar sebelum diupload
+    $('#foto_user').on('change', function(event) {
+        let reader = new FileReader();
+        reader.onload = function() {
+            $('#previewImage').attr('src', reader.result);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    });
+});
+
+
+    </script>
+    
+
+
+
+</body>
+</html>

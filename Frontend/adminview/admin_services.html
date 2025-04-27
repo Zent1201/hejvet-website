@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <a href="index.html" class="w3-bar-item w3-button"><span class="fa-solid fa-house"></span>&nbsp;&nbsp;Home Panel</a>
+        <a href="admin_lg.html" class="w3-bar-item w3-button"><span class="fa-solid fa-plane"></span>&nbsp;&nbsp;Landing Page</a>
+        <a href="admin_doctors.html" class="w3-bar-item w3-button"><span class="fa-solid fa-stethoscope"></span>&nbsp;&nbsp;Doctors</a>
+        <a href="admin_services.html" class="w3-bar-item w3-button"><span class="fa-solid fa-wrench"></span>&nbsp;&nbsp;Services</a>
+        <a href="admin_userhome.html" class="w3-bar-item w3-button"><span class="fa-solid fa-user"></span>&nbsp;&nbsp;User's Home</a>
+    </div>
+
+<div class="w3-main" style="margin-left:200px">
+    <div class="w3-container w3-indigo">
+        <button class="w3-button w3-indigo w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <a class="w3-bar-item w3-button" href="../index.html"><span class="fa-solid fa-globe"></span> View Website</a>
+        <a class="w3-bar-item w3-button" href="../loginadmin.html">Logout</a>
+    </div>
+
+    <div class="w3-container">
+        <div class="w3-container animated bounce">
+            <h1 class="w3-text-indigo"> Services List</h1>
+            <table class="w3-table">
+            <td>
+                <a href="admin_services POST.html" class="w3-button w3-blue w1-small" th:href="@{/admin_doctors_POST.html (id=${reach.id})}">Tambah</a>
+            </td>
+            </table>
+
+            <table class="w3-table-all w3-hoverable" id="servicesList">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Harga Jasa</th>
+                        <th>Deskripsi</th>
+                        <th>Gambar</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr th:each="reach : ${reach}">
+                        <td th:text="${reach.nama}"></td>
+                        <td th:text="${reach.telepon}"></td>
+                        <td th:text="${reach.email}"></td>
+                        <td th:text="${reach.message}" class="message-column"></td>
+                        <td style="white-space: nowrap;">
+                            <a href="admin_services PUT.html" class="w3-button w3-green w1-small" th:href="@{/delete_reachus (id=${reach.id})}">Update</a>
+                            <a class="w3-button w3-red w1-small" th:href="@{/delete_reachus (id=${reach.id})}" onclick="return confirm('Anda yakin ingin menghapus?')">Delete</a>
+                        </td>
+                    </tr> -->
+                </tbody>
+            </table>
+    </div>
+</div>
+
+</body>
+
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+        </script>
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/jquery-validation-1.19.5/jquery.validate.min.js"></script>
+<script src="../js/jquery-validation-1.19.5/additional-methods.min.js"></script>
+    
+<script>
+    $(document).ready(function() {
+    // Fungsi untuk menampilkan daftar layanan dalam tabel
+    function loadServices() {
+        $.ajax({
+            url: "https://hejvet.my.id/api/services",
+            type: "GET",
+            success: function(response) {
+                let servicesHtml = "";
+                response.forEach(service => {
+                    servicesHtml += `
+                        <tr>
+                            <td>${service.jenis_services}</td>
+                           <td>
+                        ${service.harga ? `Rp ${parseInt(service.harga).toLocaleString('id-ID')}` : '-'}
+                        </td>
+                         <td>${service.deskripsi}</td>
+                            <td>
+                                <img src="${service.image ? service.image : 'default.jpg'}" alt="Image" width="200">
+                            </td>
+                            <td>
+                                <a href="admin_services PUT.html?id=${service.id}" class="w3-button w3-blue">Update</a>
+                                <button class="delete-btn w3-button w3-red" data-id="${service.id}">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                $("#servicesList tbody").html(servicesHtml);
+            },
+            error: function(error) {
+                console.error("Error saat memuat layanan:", error);
+                alert("Gagal memuat daftar layanan. Pastikan API Anda berjalan dengan benar.");
+            }
+        });
+    }
+
+    // Event handler untuk tombol Delete
+    $(document).on('click', '.delete-btn', function(e) {
+        e.preventDefault(); // Mencegah reload halaman
+
+        var serviceId = $(this).data('id'); // Ambil ID layanan dari tombol
+        var row = $(this).closest('tr'); // Ambil baris tempat tombol berada
+
+        // Tanyakan konfirmasi sebelum menghapus
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to undo this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Kirim request DELETE dengan ID layanan
+                $.ajax({
+                    url: `https://hejvet.my.id/api/services/${serviceId}`,
+                    type: 'DELETE',
+                    success: function(response) {
+                        // Tampilkan notifikasi sukses
+                        Swal.fire({
+                            title: 'Deleted!',
+                            text: 'Your service has been deleted.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
+
+                        // Hapus baris yang bersangkutan dari tabel
+                        row.remove();
+                    },
+                    error: function(xhr) {
+                        // Tampilkan pesan error jika gagal
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'There was an error deleting the service.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+    // Panggil fungsi untuk memuat daftar layanan saat halaman siap
+    loadServices();
+});
+
+
+
+    
+</script>
+        
+
+
+</html>
